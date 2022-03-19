@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/EasyUI" />
+    <file type="web" url="file://$PROJECT_DIR$/easyui_day1" />
+    <file type="web" url="file://$PROJECT_DIR$/Eaxy/EasyUI" />
+    <file type="web" url="file://$PROJECT_DIR$/Maven" />
+    <file type="web" url="file://$PROJECT_DIR$/Maven_web" />
+    <file type="web" url="file://$PROJECT_DIR$/Maven技术" />
+    <file type="web" url="file://$PROJECT_DIR$/Msven技术" />
+    <file type="web" url="file://$PROJECT_DIR$/Redis" />
+    <file type="web" url="file://$PROJECT_DIR$/Redis技术" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringBoot" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringBoots" />
+    <file type="web" url="file://$PROJECT_DIR$/SSM技术" />
+    <file type="web" url="file://$PROJECT_DIR$/StudentInfo" />
+    <file type="web" url="file://$PROJECT_DIR$/StudentInfos" />
+    <file type="web" url="file://$PROJECT_DIR$/StudentInfotest" />
+    <file type="web" url="file://$PROJECT_DIR$/test" />
+    <file type="web" url="file://$PROJECT_DIR$/text" />
+    <file type="web" url="file://$PROJECT_DIR$/untitled" />
+    <file type="web" url="file://$PROJECT_DIR$/大二上综合" />
+    <file type="web" url="file://$PROJECT_DIR$/测试" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/untitled/pom.xml" />
+        <option value="$PROJECT_DIR$/Msven技术/pom.xml" />
+        <option value="$PROJECT_DIR$/Maven_web/pom.xml" />
+        <option value="$PROJECT_DIR$/Maven_java/pom.xml" />
+        <option value="$PROJECT_DIR$/Redis/pom.xml" />
+        <option value="$PROJECT_DIR$/StudentInfo/pom.xml" />
+        <option value="$PROJECT_DIR$/StudentInfotest/pom.xml" />
+        <option value="$PROJECT_DIR$/StudentInfos/pom.xml" />
+        <option value="$PROJECT_DIR$/EasyUI/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoots/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" default="true" project-jdk-name="16" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

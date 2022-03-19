@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="StudentInfo" />
+        <module name="Maven_web" />
+        <module name="SpringBoot" />
+        <module name="EasyUI" />
+        <module name="StudentInfos" />
+        <module name="SpringBoots" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="EasyUI" target="1.7" />
+      <module name="easyui_day1" target="1.7" />
+      <module name="Maven" target="1.5" />
+      <module name="Maven_java" target="1.7" />
+      <module name="Maven_web" target="1.7" />
+      <module name="Maven技术" target="1.7" />
+      <module name="Msven技术" target="1.5" />
+      <module name="Redis" target="1.7" />
+      <module name="Redis技术" target="1.7" />
+      <module name="SpringBoot" target="1.7" />
+      <module name="SpringBoots" target="1.7" />
+      <module name="SSM技术" target="1.7" />
+      <module name="StudentInfo" target="1.7" />
+      <module name="StudentInfos" target="1.8" />
+      <module name="StudentInfotest" target="1.8" />
+      <module name="test" target="11" />
+      <module name="text" target="1.7" />
+      <module name="untitled" target="1.7" />
+      <module name="大二上综合" target="1.7" />
+      <module name="测试" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SpringBoot" options="-parameters" />
+      <module name="SpringBoots" options="-parameters" />
+      <module name="StudentInfos" options="-parameters" />
+      <module name="StudentInfotest" options="-parameters" />
+      <module name="test" options="-parameters" />
+    </option>
+  </component>
+</project>

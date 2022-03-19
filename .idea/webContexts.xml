@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/JSP电商网站开发/web/text/DLJM.jsp" value="file://$PROJECT_DIR$/JSP电商网站开发/web/text" />
+        <entry key="file://$PROJECT_DIR$/JSP电商网站开发/web/信息列表展示.jsp" value="file://$PROJECT_DIR$/JSP电商网站开发/web" />
+        <entry key="file://$PROJECT_DIR$/JSP电商网站开发/web/实训八/课上笔记.jsp" value="file://$PROJECT_DIR$/JSP电商网站开发/web/实训八" />
+        <entry key="file://$PROJECT_DIR$/JSP电商网站开发/web/实训案例/实训案例三会话跟踪技术/TZJM.jsp" value="file://$PROJECT_DIR$/JSP电商网站开发/web/实训案例/实训案例三会话跟踪技术" />
+        <entry key="file://$PROJECT_DIR$/SpringBoot/src/main/webapp/SpringBoot整合Echarts/数据展示.jsp" value="file://$PROJECT_DIR$/SpringBoot/src/main/webapp/SpringBoot整合Echarts" />
+        <entry key="file://$PROJECT_DIR$/SpringBoot/src/main/webapp/SpringBoot注册功能/注册表.jsp" value="file://$PROJECT_DIR$/SpringBoot/src/main/webapp/SpringBoot注册功能" />
+      </map>
+    </option>
+  </component>
+</project>

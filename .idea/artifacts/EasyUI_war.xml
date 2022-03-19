@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="EasyUI:war">
+    <output-path>$PROJECT_DIR$/EasyUI/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>false</exploded>
+        <module>EasyUI</module>
+        <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
+      </options>
+    </properties>
+    <root id="archive" name="EasyUI.war">
+      <element id="artifact" artifact-name="EasyUI:war exploded" />
+    </root>
+  </artifact>
+</component>
