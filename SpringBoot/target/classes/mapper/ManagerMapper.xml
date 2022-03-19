@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SpringBoot注册功能.dao.ManagerDao">
+    <!--注册-->
+    <insert id="regist">
+        insert into manager(name,pwd,salt,email,sex,address) values(#{name},#{pwd},#{salt},#{email},#{sex},#{address});
+    </insert>
+    <!--检测重复名-->
+    <select id="checkName" resultType="int" >
+        select count(*) from manager where name = #{name};
+    </select>
+</mapper>

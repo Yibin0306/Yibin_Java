@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="第一章Mybatis.dao.用户部门dao">
+    <!--映射关系-->
+    <resultMap id="c" type="user2">
+        <id property="depid" column="depid"></id>
+        <result property="depname" column="depname"></result>
+        <result property="depLocation" column="depLocation"></result>
+
+        <collection property="用户s" ofType="user">
+            <id column="id" property="user_id"></id>
+            <result column="name" property="user_name"></result>
+            <result column="pwd" property="user_pwd"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findOne" resultMap="c">
+        select * from 用户部门 d left join 用户 u
+        on d.depid = u.deptid
+        where d.depid=#{sid}
+    </select>
+
+</mapper>

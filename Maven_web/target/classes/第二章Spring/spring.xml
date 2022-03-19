@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+
+       ">
+    <!--
+        配置bean
+        管理哪个类，哪个类配置进来
+        <bean id="" class="">
+        id:获取对象时用到ID属性对应的值   App a = (App)context.getBean("d");
+        class: 被管理的组件
+    -->
+    <bean class="第二章Spring.HelloWorld" id="app" init-method="init" destroy-method="destroy" scope="singleton"/>
+
+    <!--构造注入-->
+    <bean class="第二章Spring.构造注入" id="user">
+        <constructor-arg name="name" value="jerry"></constructor-arg>
+        <constructor-arg name="age" value="18"></constructor-arg>
+        <constructor-arg name="day" value="1999/12/12 12:01:01"></constructor-arg>
+        <constructor-arg name="names">
+            <list>
+                <value>tom</value>
+                <value>tom</value>
+                <value>tom</value>
+                <value>tom</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="ages">
+            <set>
+                <value>12</value>
+                <value>18</value>
+                <value>16</value>
+            </set>
+        </constructor-arg>
+        <constructor-arg name="map">
+            <map>
+                <entry key="name" value="tom"></entry>
+                <entry key="age" value="14"></entry>
+                <entry key="sex" value="男"></entry>
+            </map>
+        </constructor-arg>
+        <constructor-arg name="ints">
+            <array>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+            </array>
+        </constructor-arg>
+        <constructor-arg name="student" ref="student"></constructor-arg>
+    </bean>
+    <bean class="第二章Spring.Student" id="student"></bean>
+
+    <!--Setter注入-->
+    <bean class="第二章Spring.Setter注入" id="user1">
+        <property name="name" value="张三"></property>
+        <property name="names">
+            <list>
+                <value>tom</value>
+            </list>
+        </property>
+        <property name="student" ref="student"></property>
+    </bean>
+
+    <!--自动注入-->
+    <bean autowire="byName" class="第二章Spring.自动注入" id="自动注入"></bean>
+    <!--byName-->
+    <bean class="第二章Spring.Student" id="student1"></bean>
+    <!--byType-->
+    <bean class="第二章Spring.Student"></bean>
+
+    <!--AOP-->
+    <!--核心业务类-->
+    <bean class="第二章Spring.UserService" id="userService"></bean>
+    <!--通知类-->
+    <bean class="第二章Spring.MyAdive" id="MyAdive"></bean>
+
+    <!--
+        execution(* 第二章Spring.UserService.add())
+        *:返回值 void String
+        包...类
+        ():根据形参决定  切所有内容用..
+    -->
+
+    <aop:config>
+        <aop:pointcut id="pc" expression="execution(* 第二章Spring.UserService.*())"/>
+        <aop:advisor advice-ref="MyAdive" pointcut-ref="pc"></aop:advisor>
+    </aop:config>
+
+    <!--
+        execution(String 第二章Spring.UserService.*(..))
+        返回值:String
+        包：第二章Spring
+        类:UserService
+        方法:所有
+        形参:没要求
+
+        execution(Int 第二章Spring.User*.*(..))
+
+    -->
+</beans>

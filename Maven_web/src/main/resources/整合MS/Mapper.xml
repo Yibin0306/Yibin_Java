@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="整合MybatisSpring.dao.UserDao">
+    <!--查询所有用户-->
+    <select id="findAll" resultType="整合MybatisSpring.entity.User">
+        select * from user;
+    </select>
+    <!--添加用户-->
+    <insert id="add">
+        insert into user value (#{id},#{name},#{pwd});
+    </insert>
+    <!--修改用户-->
+    <update id="update">
+        update user set name=#{name},pwd=#{pwd} where id = #{id};
+    </update>
+    <!--删除用户-->
+    <update id="delete">
+        delete from user where id = #{id};
+    </update>
+</mapper>

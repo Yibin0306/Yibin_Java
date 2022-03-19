@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SpringBoot集成POI.dao.BookMapper">
+    <resultMap id="BaseResultMap" type="SpringBoot集成POI.entity.Book">
+        <id column="bookID" property="bookID" jdbcType="INTEGER"></id>
+        <result column="bookName" property="bookName" jdbcType="VARCHAR"/>
+        <result column="bookCounts" property="bookCounts" jdbcType="INTEGER"/>
+        <result column="detail" property="detail" jdbcType="VARCHAR"/>
+        <result column="db_source" property="db_source" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getAllBooks" resultMap="BaseResultMap">
+        select * from books;
+    </select>
+    <insert id="addBook">
+        insert into books(bookName,bookCounts,detail,db_source)
+        values
+        <foreach collection="list" separator="," item="bk">
+            (
+            #{bk.bookName,jdbcType=VARCHAR},
+            #{bk.bookCounts,jdbcType=INTEGER},
+            #{bk.detail,jdbcType=VARCHAR},
+            #{bk.db_source,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+</mapper>

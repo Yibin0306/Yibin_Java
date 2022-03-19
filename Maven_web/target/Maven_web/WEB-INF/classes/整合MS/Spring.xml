@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       ">
+    <!--数据源-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis技术"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="202306"></property>
+    </bean>
+    <!--SqlSessionFactory-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sessionFactory">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="mapperLocations" value="classpath:整合MS/Mapper.xml"></property>
+    </bean>
+    <!--
+        dao mapper
+        工厂在创建bean 不用谢bean id 默认创建名:接口名首字母小写
+        StudentDao  studentDao UserDao userDao
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
+        <property name="basePackage" value="整合MybatisSpring.dao"></property>
+    </bean>
+    <!--管理service组件-->
+    <bean autowire="byName" class="整合MybatisSpring.service.UserServiceImp" id="userService"></bean>
+</beans>

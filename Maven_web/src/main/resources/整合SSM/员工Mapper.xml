@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="整合SSM.dao.员工Dao">
+    <!--添加用户-->
+    <insert id="add" parameterType="员工">
+        insert into 员工 values(#{id},#{name},#{age},#{sex});
+    </insert>
+    <!--查询所有标签-->
+    <select id="findAll" resultType="员工">
+        select * from 员工;
+    </select>
+    <!--删除员工-->
+    <delete id="delete">
+        delete from 员工 where id = #{id};
+    </delete>
+    <!--修改员工-->
+    <update id="update">
+        update 员工 set name = #{name},age = #{age},sex = #{sex}
+        where id = #{id}
+    </update>
+</mapper>

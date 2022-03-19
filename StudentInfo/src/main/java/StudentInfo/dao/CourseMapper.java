@@ -1,0 +1,29 @@
+package StudentInfo.dao;
+
+import StudentInfo.entity.Course;
+import StudentInfo.entity.CourseExample;
+import java.util.List;
+
+import StudentInfo.entity.Student;
+import StudentInfo.entity.Teacher;
+import org.apache.ibatis.annotations.Param;
+
+public interface CourseMapper {
+    //添加课程
+    Integer addCourse(Course course);
+    //查询所有课程
+    List<Course> findAllCourse();
+    //根据ID删除课程
+    Integer deleteCourse(String tid);
+    //根据id跳转到修改课程
+    //根据id查询课程信息
+    List<Course> findOneCourse(String cid);
+    //修改课程内容
+    Integer updateCourse(Course course);
+    //根据课程名称查询课程信息
+    List<Course> findCnameCourse(String Cname);
+    //根据学院查询课程信息
+    List<Course> findBelongcollCourse(String belongcoll);
+    //根据类型查询课程信息
+    List<Course> findTypeCourse(String type);
+}

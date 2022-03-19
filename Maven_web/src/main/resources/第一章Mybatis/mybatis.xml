@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 数据库配置文件 -->
+    <properties resource="第一章Mybatis/JDBC.properties"></properties>
+    <!-- 缓存 -->
+    <settings>
+        <setting name="cacheEnabled" value="ture"></setting>
+    </settings>
+    <!--别名-->
+    <typeAliases>
+        <typeAlias type="第一章Mybatis.entity.用户" alias="user"></typeAlias>
+        <typeAlias type="第一章Mybatis.entity.用户数据" alias="user1"></typeAlias>
+        <typeAlias type="第一章Mybatis.entity.用户部门" alias="user2"></typeAlias>
+    </typeAliases>
+    <!--配置数据根-->
+    <environments default="a">
+        <environment id="a">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${uname}" />
+                <property name="password" value="${upwd}" />
+            </dataSource>
+        </environment>
+    </environments>
+    <!--加载映射文件-->
+    <mappers>
+        <mapper resource="第一章Mybatis/用户dao.xml" />
+        <mapper resource="第一章Mybatis/用户数据dao.xml" />
+        <mapper resource="第一章Mybatis/用户部门dao.xml" />
+    </mappers>
+</configuration>

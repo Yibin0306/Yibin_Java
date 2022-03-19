@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StudentInfo.dao.CourseplanMapper">
+    <cache/>
+    <!-- 为了返回List，类型而定义的resultMap -->
+    <resultMap type="StudentInfo.entity.CoursePlan" id="resultListCoursePlan">
+        <result column="courseclass" property="courseclass" />
+        <result column="coursetime" property="coursetime" />
+        <result column="courseweek" property="courseweek" />
+        <result column="cid" property="cid" />
+        <result column="tid" property="tid" />
+        <result column="classroom" property="classroom" />
+        <result column="credits" property="credits" />
+        <result column="period" property="period" />
+        <result column="totalnum" property="totalnum" />
+
+        <collection property="courses" ofType="StudentInfo.entity.Course">
+            <result column="cid" property="cid" />
+            <result column="cname" property="cname" />
+            <result column="cintroduction" property="cintroduction" />
+            <result column="type" property="type" />
+            <result column="belongcoll" property="belongcoll" />
+            <result column="belongpro" property="belongpro" />
+        </collection>
+    </resultMap>
+
+    <!-- 根据课程编号查询该课程，用于查询是否有有安排课程 -->
+    <select id="findOneCoursePlan" resultType="StudentInfo.entity.CoursePlan">
+        select * from courseplan where cid = #{cid}
+    </select>
+    <!-- 添加课程安排信息 -->
+    <insert id="addCoursePlan" parameterType="StudentInfo.entity.CoursePlan">
+        insert into courseplan(courseclass,coursetime,courseweek,cid,tid,classroom,credits,period,totalnum)
+            value (#{courseclass}, #{coursetime},#{courseweek},#{cid},#{tid},#{classroom},#{credits},#{period},#{totalnum})
+    </insert>
+    <!--多表查询根据tid查询所有课程信息和课程名称-->
+    <select id="findAllCoursePlan" resultMap="resultListCoursePlan">
+        select * from courseplan left JOIN course
+        on courseplan.cid = course.cid
+        where courseplan.tid = #{tid}
+    </select>
+    <!-- 根据排课班级名跳转到修改课程信息信息界面 -->
+    <select id="findOneTeaCoursePlan" resultType="StudentInfo.entity.CoursePlan">
+        select * from courseplan where courseclass = #{courseclass}
+    </select>
+    <!-- 根据开课班级名修改课程安排信息 -->
+    <update id="updateCoursePlan" parameterType="StudentInfo.entity.CoursePlan">
+        update courseplan set
+        coursetime=#{coursetime},courseweek=#{courseweek},cid=#{cid},tid=#{tid},classroom=#{classroom},credits=#{credits},period=#{period},totalnum=#{totalnum}
+        where courseclass =#{courseclass}
+    </update>
+    <!-- 根据开课班级名删除课程安排信息 -->
+    <delete id="deleteCoursePlan" parameterType="StudentInfo.entity.CoursePlan">
+        delete from courseplan where courseclass=#{courseclass}
+    </delete>
+</mapper>

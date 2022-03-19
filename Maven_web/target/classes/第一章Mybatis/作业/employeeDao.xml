@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="第一章Mybatis.作业.dao.EmployeeDao">
+    <cache/>
+    <resultMap id="cc" type="employ">
+        <id property="eid" column="eid"></id>
+        <result property="ename" column="ename"></result>
+        <result property="edate" column="edate"></result>
+        <result property="ebirthday" column="ebirthday"></result>
+        <result property="deptid" column="deptid"></result>
+
+        <collection property="departments" ofType="employ1">
+            <result property="deptmanager" column="deptmanager"></result>
+        </collection>
+    </resultMap>
+    <!--sql语段-->
+    <sql id="select">
+        select eid,ename,edate,ebirthday,deptid from employee
+    </sql>
+    <!--查询id单个用户-->
+    <select id="EmployeeOne" parameterType="java.lang.Integer" resultType="employ">
+        <include refid="select"></include>
+        where eid = #{eid}
+    </select>
+    <!--查询姓李用户-->
+    <select id="EmployeeAll" resultType="employ">
+        select * from employee where ename like "李%"
+    </select>
+    <!--批量删除员工-->
+    <delete id="deleteEmployeeId">
+        delete from employee where eid in
+        <foreach collection="list" close=")" open="(" separator="," item="b">
+            #{b}
+        </foreach>
+    </delete>
+    <!--查询单个用户带经理-->
+    <select id="EmployeeOnes" resultMap="cc">
+        select * from employee left JOIN department
+        on employee.deptid = department.deptid
+        where employee.eid = #{sid}
+    </select>
+</mapper>

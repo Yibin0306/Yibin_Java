@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="第一章Mybatis.dao.用户dao">
+    <cache/>
+    <!--映射关系-->
+    <resultMap id="a" type="user">
+        <id property="user_id" column="id"></id>
+        <result property="user_name" column="name"></result>
+        <result property="user_pwd" column="pwd"></result>
+    </resultMap>
+    <!--sql片段-->
+    <sql id="select">
+        select id,name,pwd from 用户
+    </sql>
+    <!--
+        resultType:返回值类型
+        parameterType：
+    -->
+    <!--添加用户-->
+    <insert id="addUser">
+        insert into 用户 values(#{id},#{name},#{pwd})
+    </insert>
+    <!--查询所有用户-->
+    <select id="findAll" resultMap="a">
+        select * from 用户
+    </select>
+    <!--查询id单个用户-->
+    <select id="selectOne" parameterType="java.lang.Integer" resultMap="a">
+        <include refid="select"></include>
+        where id = #{id}
+    </select>
+    <!--修改用户名-->
+    <update id="updateUser" >
+        update 用户 set name = #{name} where id = #{id}
+    </update>
+    <!--删除用户名-->
+    <delete id="deleteUser">
+        delete from 用户 where id = #{id}
+    </delete>
+    <!--查询名字单个用户-->
+    <select id="selectOneName" parameterType="java.lang.String" resultMap="a">
+        <include refid="select"></include>
+        where name = #{name}
+    </select>
+    <!--多条件搜索-->
+    <select id="select" resultMap="a">
+        <include refid="select"></include>
+        <where>
+            <if test="user_id != null">
+                id = #{user_id}
+            </if>
+            <if test="user_name != null">
+                and name = #{user_name}
+            </if>
+            <if test="user_pwd != null">
+                and pwd = #{user_pwd}
+            </if>
+        </where>
+    </select>
+    <!--foreach批量删除用户-->
+    <delete id="deleteUserId">
+        delete from 用户 where id in
+        <foreach collection="list" close=")" open="(" separator="," item="a">
+            #{a}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="第一章Mybatis.dao.用户数据dao">
+    <!--映射关系-->
+    <resultMap id="b" type="user1">
+        <id property="id" column="id"></id>
+        <result property="number" column="number"></result>
+        <result property="userid" column="userid"></result>
+
+        <association property="用户">
+            <id column="id" property="user_id"></id>
+            <result column="name" property="user_name"></result>
+            <result column="pwd" property="user_pwd"></result>
+        </association>
+
+    </resultMap>
+    <select id="findone" resultMap="b">
+        select * from 用户数据 a left JOIN 用户 b
+        on a.userid = b.id
+        where a.id = #{id}
+    </select>
+
+</mapper>
