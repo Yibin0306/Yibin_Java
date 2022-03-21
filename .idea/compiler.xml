@@ -8,16 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="StudentInfo" />
+        <module name="SpringBoots" />
         <module name="Maven_web" />
         <module name="SpringBoot" />
         <module name="EasyUI" />
         <module name="StudentInfos" />
-        <module name="SpringBoots" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="EasyUI" target="1.7" />
       <module name="easyui_day1" target="1.7" />
+      <module name="HnchInfo" target="1.7" />
       <module name="Maven" target="1.5" />
       <module name="Maven_java" target="1.7" />
       <module name="Maven_web" target="1.7" />
@@ -40,6 +41,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="HnchInfo" options="-parameters" />
       <module name="SpringBoot" options="-parameters" />
       <module name="SpringBoots" options="-parameters" />
       <module name="StudentInfos" options="-parameters" />
