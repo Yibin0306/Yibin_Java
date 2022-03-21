@@ -1,4 +1,4 @@
-package Hnchinfo;
+package HnchInfo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
