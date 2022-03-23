@@ -34,19 +34,14 @@
                 type:"GET",
                 url:"employee/login",
                 data:{sn:uname,password:password},
-                contentType:"application/json",
-                success:function (x) {
-                    console.log(x);
-                    JSON.stringify(x);
-                    if(x.status==1)
-                    {
-                        //进入系统
-                        location.href="to_self";
-
-                    }else{
-                        alert(x.msg);
+                success:function (res) {
+                    if (res == "true") {
+                        location.href="/self.jsp";
+                        return true;
+                    }else {
+                        alert("账号或密码错误")
+                        return false;
                     }
-
                 }
             })
         }
