@@ -36,10 +36,10 @@
                 data:{sn:uname,password:password},
                 success:function (res) {
                     if (res == "true") {
-                        location.href="/self.jsp";
+                        location.href="self.jsp";
                         return true;
                     }else {
-                        alert("账号或密码错误")
+                        alert("账号或密码错误！")
                         return false;
                     }
                 }
