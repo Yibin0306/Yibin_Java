@@ -1,5 +1,6 @@
 package HnchInfo.controller;
 
+import HnchInfo.entity.Claim_voucher_item;
 import HnchInfo.entity.Department;
 import HnchInfo.entity.Employee;
 import HnchInfo.service.LoginService;
@@ -62,7 +63,7 @@ public class LoginController {
     }
     //top  填写报销单
     @RequestMapping("/claim_voucher/to_add")
-    public String claim_voucher_add(String abc , Model model){
+    public String claim_voucher_add(Claim_voucher_item abc , Model model){
         model.addAttribute("info", abc);
         return "claim_voucher_add";
     }
