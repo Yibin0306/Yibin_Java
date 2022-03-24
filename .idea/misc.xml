@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/ClassSystem" />
     <file type="web" url="file://$PROJECT_DIR$/EasyUI" />
     <file type="web" url="file://$PROJECT_DIR$/easyui_day1" />
     <file type="web" url="file://$PROJECT_DIR$/Eaxy/EasyUI" />
