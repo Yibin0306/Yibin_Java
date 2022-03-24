@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="StudentInfo" />
         <module name="SpringBoots" />
-        <module name="HnchInfo" />
         <module name="Maven_web" />
         <module name="SpringBoot" />
         <module name="EasyUI" />

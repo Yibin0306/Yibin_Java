@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EasyUI/EasyUI.iml" filepath="$PROJECT_DIR$/EasyUI/EasyUI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/HnchInfo/HnchInfo.iml" filepath="$PROJECT_DIR$/HnchInfo/HnchInfo.iml" />
       <module fileurl="file://$PROJECT_DIR$/JAVA基础—面向对象/JAVA基础—面向对象.iml" filepath="$PROJECT_DIR$/JAVA基础—面向对象/JAVA基础—面向对象.iml" />
       <module fileurl="file://$PROJECT_DIR$/JDBC技术/JDBC技术.iml" filepath="$PROJECT_DIR$/JDBC技术/JDBC技术.iml" />
       <module fileurl="file://$PROJECT_DIR$/JSP电商网站开发/JSP电商网站开发.iml" filepath="$PROJECT_DIR$/JSP电商网站开发/JSP电商网站开发.iml" />
