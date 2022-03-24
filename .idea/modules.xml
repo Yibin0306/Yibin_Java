@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ClassSystem/ClassSystem.iml" filepath="$PROJECT_DIR$/ClassSystem/ClassSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/EasyUI/EasyUI.iml" filepath="$PROJECT_DIR$/EasyUI/EasyUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/JAVA基础—面向对象/JAVA基础—面向对象.iml" filepath="$PROJECT_DIR$/JAVA基础—面向对象/JAVA基础—面向对象.iml" />
       <module fileurl="file://$PROJECT_DIR$/JDBC技术/JDBC技术.iml" filepath="$PROJECT_DIR$/JDBC技术/JDBC技术.iml" />
