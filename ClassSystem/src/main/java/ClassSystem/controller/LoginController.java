@@ -14,6 +14,7 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+//    登录操作验证
     @PostMapping(value = "/login")
     public ServicePost login(User user){
         ServicePost servicePost = new ServicePost();
@@ -27,4 +28,5 @@ public class LoginController {
         }
         return servicePost;
     }
+
 }

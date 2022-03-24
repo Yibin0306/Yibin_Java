@@ -17,7 +17,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ClassSystem" target="1.7" />
+      <module name="ClassSystem" target="1.8" />
       <module name="EasyUI" target="1.7" />
       <module name="easyui_day1" target="1.7" />
       <module name="HnchInfo" target="1.7" />

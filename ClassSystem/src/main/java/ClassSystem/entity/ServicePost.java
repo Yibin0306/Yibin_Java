@@ -13,7 +13,6 @@ public class ServicePost {
     }
 
     public String getMsg() {
-
         return msg;
     }
 
