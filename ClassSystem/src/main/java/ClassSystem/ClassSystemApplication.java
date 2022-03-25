@@ -1,11 +1,11 @@
 package ClassSystem;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@MapperScan("ClassSystem.mapper")
+@ComponentScan(basePackages = "ClassSystem.*")
 public class ClassSystemApplication {
 
     public static void main(String[] args) {
