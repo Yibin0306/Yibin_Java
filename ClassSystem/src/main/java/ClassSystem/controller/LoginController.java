@@ -20,7 +20,7 @@ public class LoginController {
         ServicePost servicePost = new ServicePost();
         User login = userService.login(user);
         if (login!=null){
-            servicePost.setMsg("欢迎您，亲爱的小公主~");
+            servicePost.setMsg("欢迎您，娇贵的小公主~");
             servicePost.setCode(200);
         }else{
             servicePost.setMsg("账号或密码错误呢~");
