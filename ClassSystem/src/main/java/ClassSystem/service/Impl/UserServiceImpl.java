@@ -1,5 +1,6 @@
 package ClassSystem.service.Impl;
 
+import ClassSystem.entity.Message;
 import ClassSystem.entity.ServicePost;
 import ClassSystem.entity.User;
 import ClassSystem.mapper.UserMapper;
