@@ -14,19 +14,10 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-//    登录操作验证
+    //登录操作验证
     @PostMapping(value = "/login")
     public ServicePost login(User user){
-        ServicePost servicePost = new ServicePost();
-        User login = userService.login(user);
-        if (login!=null){
-            servicePost.setMsg("欢迎您，娇贵的小公主~");
-            servicePost.setCode(200);
-        }else{
-            servicePost.setMsg("账号或密码错误呢~");
-            servicePost.setCode(101);
-        }
-        return servicePost;
+        return userService.login(user);
     }
 
 }

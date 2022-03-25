@@ -1,5 +1,8 @@
 package ClassSystem.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ServicePost {
     private String msg;
     private Integer code;
