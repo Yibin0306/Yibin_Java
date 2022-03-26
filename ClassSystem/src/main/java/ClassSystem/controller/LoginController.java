@@ -1,5 +1,6 @@
 package ClassSystem.controller;
 
+import ClassSystem.entity.Message;
 import ClassSystem.entity.ServicePost;
 import ClassSystem.entity.User;
 import ClassSystem.service.UserService;
