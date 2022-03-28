@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface StudentMapper {
-    //返回多少行
+    //返回多少行（page）
     int TotalCount();
     //获取学生列表
     List<Student> StudentList(PageHelp pageHelp);

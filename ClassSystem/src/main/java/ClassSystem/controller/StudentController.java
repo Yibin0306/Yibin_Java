@@ -14,7 +14,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    //给前端当前页的数据
+    //给前端当前页的数据（学生列表，page值）
     @GetMapping(value = "/StudentList")
     public ServicePost StudentList(PageHelp pageHelp){
         return studentService.StudentList(pageHelp);

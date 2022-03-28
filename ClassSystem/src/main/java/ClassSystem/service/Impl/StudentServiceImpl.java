@@ -17,6 +17,7 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private ServicePost servicePost;
 
+    //返回前端页面数据（学生列表,page值）
     @Override
     public ServicePost StudentList(PageHelp pageHelp) {
         pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
