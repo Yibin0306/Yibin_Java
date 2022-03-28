@@ -3,13 +3,23 @@ package ClassSystem.entity;
 public class User {
     private String username;
     private String password;
+    private String name;
+    private String phone;
+    private String dorm;
+    private String address;
+    private int roleid;
 
     public User() {
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, String name, String phone, String dorm, String address, int roleid) {
         this.username = username;
         this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.dorm = dorm;
+        this.address = address;
+        this.roleid = roleid;
     }
 
     public String getUsername() {
@@ -28,11 +38,56 @@ public class User {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDorm() {
+        return dorm;
+    }
+
+    public void setDorm(String dorm) {
+        this.dorm = dorm;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(int roleid) {
+        this.roleid = roleid;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", dorm='" + dorm + '\'' +
+                ", address='" + address + '\'' +
+                ", roleid=" + roleid +
                 '}';
     }
 }

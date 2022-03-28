@@ -93,11 +93,11 @@ public class ServicePost<R> implements Serializable {
         return new ServicePost(Const.false_101,msg);
     }
 
-    public ServicePost CreateTrueCodMsgList(List<R> list,int total){
+    public ServicePost CreateTrueCodMsgList(List<R> list,int total,String msg){
         return new ServicePost(Const.true_200,list,total);
     }
 
-    public ServicePost CreateErrorCodMsgList(List<R> list,int total){
-        return new ServicePost(Const.false_101,list,total);
+    public ServicePost CreateErrorCodMsgList(String msg){
+        return new ServicePost(Const.false_101,msg);
     }
 }

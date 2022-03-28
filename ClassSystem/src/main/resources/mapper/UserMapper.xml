@@ -4,7 +4,17 @@
 
     <!--登录验证-->
     <select id="login" parameterType="User" resultType="User">
-        select * from user where username=#{username} and password=#{password};
+        select * from t_user where username=#{username} and password=#{password};
+    </select>
+
+    <!--返回多少行-->
+    <select id="TotalCount"  resultType="int">
+        select count(1) from t_user;
+    </select>
+
+    <!--获取学生列表-->
+    <select id="StudentList" parameterType="PageHelp" resultType="User">
+        select * from t_user where roleid=3 limit #{start},#{end};
     </select>
 
 </mapper>
