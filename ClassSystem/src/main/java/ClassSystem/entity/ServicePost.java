@@ -84,20 +84,16 @@ public class ServicePost<R> implements Serializable {
     public void setTotal(int total) {
         this.total = total;
     }
-
+    //返回成功信息
     public static ServicePost CreateTrueCodMsg(String msg){
         return new ServicePost(Const.true_200,msg);
     }
-
+    //返回错误信息
     public static ServicePost CreateErrorCodMsg(String msg){
         return new ServicePost(Const.false_101,msg);
     }
-
+    //返回学生列表以及行数
     public ServicePost CreateTrueCodMsgList(List<R> list,int total,String msg){
         return new ServicePost(Const.true_200,list,total);
-    }
-
-    public ServicePost CreateErrorCodMsgList(String msg){
-        return new ServicePost(Const.false_101,msg);
     }
 }
