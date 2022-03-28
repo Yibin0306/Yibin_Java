@@ -1,15 +1,18 @@
 package ClassSystem.entity;
 
 import ClassSystem.utility.Const;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Component
 public class ServicePost<R> implements Serializable {
     private int code;
     private String msg;
     private R data;
     private List<R> list;
+    private int total;
 
     public ServicePost() {
     }
@@ -29,19 +32,17 @@ public class ServicePost<R> implements Serializable {
         this.list = list;
     }
 
+    public ServicePost(int code, List<R> list,int total) {
+        this.code = code;
+        this.list = list;
+        this.total = total;
+    }
+
     public ServicePost(int code, String msg, R data, List<R> list) {
         this.code = code;
         this.msg = msg;
         this.data = data;
         this.list = list;
-    }
-
-    public static ServicePost CreateTrueCodMsg(String msg){
-        return new ServicePost(Const.true_200,msg);
-    }
-
-    public static ServicePost CreateErrorCodMsg(String msg){
-        return new ServicePost(Const.false_101,msg);
     }
 
     public int getCode() {
@@ -76,13 +77,27 @@ public class ServicePost<R> implements Serializable {
         this.list = list;
     }
 
-    @Override
-    public String toString() {
-        return "ServicePost{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                ", list=" + list +
-                '}';
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public static ServicePost CreateTrueCodMsg(String msg){
+        return new ServicePost(Const.true_200,msg);
+    }
+
+    public static ServicePost CreateErrorCodMsg(String msg){
+        return new ServicePost(Const.false_101,msg);
+    }
+
+    public ServicePost CreateTrueCodMsgList(List<R> list,int total){
+        return new ServicePost(Const.true_200,list,total);
+    }
+
+    public ServicePost CreateErrorCodMsgList(List<R> list,int total){
+        return new ServicePost(Const.false_101,list,total);
     }
 }
