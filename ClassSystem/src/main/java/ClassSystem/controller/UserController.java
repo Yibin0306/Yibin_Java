@@ -44,7 +44,7 @@ public class UserController {
     }
 
     //查询框查询教师
-    @GetMapping(value = "/searchTeacher")
+    @PostMapping(value = "/searchTeacher")
     public ServicePost searchTeacher(User user){
         return userService.searchTeacher(user);
     }
