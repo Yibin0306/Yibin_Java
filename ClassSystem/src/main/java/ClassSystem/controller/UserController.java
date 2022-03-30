@@ -43,6 +43,12 @@ public class UserController {
         return userService.TeacherList(pageHelp);
     }
 
+    //查询框查询教师
+    @GetMapping(value = "/searchTeacher")
+    public ServicePost searchTeacher(User user){
+        return userService.searchTeacher(user);
+    }
+
     //删除单个老师信息
     @GetMapping(value = "/deleteTeacher")
     public ServicePost deleteTeacher(String username){

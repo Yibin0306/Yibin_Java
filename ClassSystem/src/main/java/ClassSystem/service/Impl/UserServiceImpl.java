@@ -79,6 +79,21 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("获取老师列表没有数据呢~");
         }
     }
+    //查询框查询教师
+    @Override
+    public ServicePost searchTeacher(User user) {
+        if (user.getPage()==0){
+            user.setPage(1);
+        }
+        if (user.getEnd()==0){
+            user.setEnd(10);
+        }
+        int start = (user.getPage()-1)* user.getEnd();
+        user.setStart(start);
+        int Total = userMapper.searchTeacherTotal(user);
+        List<User> searchTeacher = userMapper.searchTeacher(user);
+        return servicePost.CreateTrueCodMsgList(searchTeacher,Total,"获取成功呢!");
+    }
     //删除单个老师信息
     @Override
     public ServicePost DeleteTeacher(String username) {

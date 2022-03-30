@@ -32,7 +32,7 @@
         limit #{start},#{end};
     </select>
 
-    <!--返回多少行-->
+    <!--返回多少行（page）学生-->
     <select id="searchStudentTotal" parameterType="User" resultType="int">
         select count(1) from t_user where roleid=3
         <if test="username!=null">
@@ -54,6 +54,35 @@
     <!--获取老师列表-->
     <select id="TeacherList" parameterType="PageHelp" resultType="User">
         select * from t_user where roleid=2 limit #{start},#{end};
+    </select>
+
+    <!--查询框查询教师-->
+    <select id="searchTeacher" parameterType="User" resultType="User">
+        select * from t_user where roleid=2
+        <if test="username!=null">
+            and (username = #{username} or username like concat('%',#{username},'%'))
+        </if>
+        <if test="name!=null">
+            and (name = #{name} or name like concat('%',#{name},'%'))
+        </if>
+        <if test="dorm!=null">
+            and (dorm = #{dorm} or dorm like concat('%',#{dorm},'%'))
+        </if>
+        limit #{start},#{end};
+    </select>
+
+    <!--返回多少行（page）教师-->
+    <select id="searchTeacherTotal" parameterType="User" resultType="int">
+        select count(1) from t_user where roleid=2
+        <if test="username!=null">
+            and (username = #{username} or username like concat('%',#{username},'%'))
+        </if>
+        <if test="name!=null">
+            and (name = #{name} or name like concat('%',#{name},'%'))
+        </if>
+        <if test="dorm!=null">
+            and (dorm = #{dorm} or dorm like concat('%',#{dorm},'%'))
+        </if>
     </select>
 
     <!-- 根据UserName删除老师信息 -->
