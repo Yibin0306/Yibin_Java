@@ -31,8 +31,8 @@ public class UserController {
         return userService.searchStudent(user);
     }
 
-    //删除学生信息
-    @DeleteMapping(value = "/CenterData")
+    //删除单个学生信息
+    @GetMapping(value = "/deleteStudent")
     public ServicePost CenterData(String username){
         return userService.DeleteStudent(username);
     }
@@ -41,5 +41,11 @@ public class UserController {
     @GetMapping(value = "/TeacherList")
     public ServicePost TeacherList(PageHelp pageHelp){
         return userService.TeacherList(pageHelp);
+    }
+
+    //删除单个老师信息
+    @GetMapping(value = "/deleteTeacher")
+    public ServicePost deleteTeacher(String username){
+        return userService.DeleteTeacher(username);
     }
 }

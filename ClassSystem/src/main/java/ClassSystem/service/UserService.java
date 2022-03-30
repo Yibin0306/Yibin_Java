@@ -11,8 +11,10 @@ public interface UserService {
     ServicePost StudentList(PageHelp pageHelp);
     //查询框查询学生
     ServicePost searchStudent(User user);
-    //删除学生信息
+    //删除单个学生信息
     ServicePost DeleteStudent(String username);
     //获取老师列表,page值
     ServicePost TeacherList(PageHelp pageHelp);
+    //删除单个老师信息
+    ServicePost DeleteTeacher(String username);
 }

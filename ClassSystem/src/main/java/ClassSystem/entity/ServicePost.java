@@ -92,7 +92,7 @@ public class ServicePost<R> implements Serializable {
     public static ServicePost CreateErrorCodMsg(String msg){
         return new ServicePost(Const.false_101,msg);
     }
-    //返回学生列表以及行数
+    //返回学生and老师列表以及行数
     public ServicePost CreateTrueCodMsgList(List<R> list,int total,String msg){
         return new ServicePost(Const.true_200,list,total);
     }

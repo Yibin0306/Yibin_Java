@@ -23,4 +23,6 @@ public interface UserMapper {
     Integer DeleteStudent(String username);
     //获取老师列表
     List<User> TeacherList(PageHelp pageHelp);
+    //删除单个老师信息
+    Integer DeleteTeacher(String username);
 }

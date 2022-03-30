@@ -46,14 +46,18 @@
         </if>
     </select>
 
-    <!-- 根据学号删除学生信息 -->
+    <!-- 根据UserName删除学生信息 -->
     <delete id="DeleteStudent" parameterType="User">
         delete from t_user where username=#{username}
     </delete>
 
-    <!--获取学生列表-->
+    <!--获取老师列表-->
     <select id="TeacherList" parameterType="PageHelp" resultType="User">
         select * from t_user where roleid=2 limit #{start},#{end};
     </select>
 
+    <!-- 根据UserName删除老师信息 -->
+    <delete id="DeleteTeacher" parameterType="User">
+        delete from t_user where username=#{username}
+    </delete>
 </mapper>
