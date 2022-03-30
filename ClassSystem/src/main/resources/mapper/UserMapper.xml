@@ -31,6 +31,7 @@
         </if>
         limit #{start},#{end};
     </select>
+
     <!--返回多少行-->
     <select id="searchStudentTotal" parameterType="User" resultType="int">
         select count(1) from t_user where roleid=3
