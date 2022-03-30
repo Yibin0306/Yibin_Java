@@ -22,4 +22,9 @@
         delete from t_user where username=#{username}
     </delete>
 
+    <!--获取学生列表-->
+    <select id="TeacherList" parameterType="PageHelp" resultType="User">
+        select * from t_user where roleid=2 limit #{start},#{end};
+    </select>
+
 </mapper>

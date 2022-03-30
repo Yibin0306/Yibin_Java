@@ -51,4 +51,17 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("删除学生信息失败呢~");
         }
     }
+    //获取老师列表,page值
+    @Override
+    public ServicePost TeacherList(PageHelp pageHelp) {
+        int total = userMapper.TotalCount();
+        if (total>0){
+            pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
+            pageHelp.setEnd(pageHelp.getPagenum());
+            List<User> TeacherList = userMapper.TeacherList(pageHelp);
+            return servicePost.CreateTrueCodMsgList(TeacherList,total,"获取老师列表成功呢!");
+        }else {
+            return ServicePost.CreateErrorCodMsg("获取老师列表没有数据呢~");
+        }
+    }
 }
