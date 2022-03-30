@@ -14,4 +14,6 @@ public interface UserMapper {
     int TotalCount();
     //获取学生列表
     List<User> StudentList(PageHelp pageHelp);
+    //删除单个学生信息
+    Integer DeleteStudent(String username);
 }

@@ -41,4 +41,14 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("获取学生列表没有数据呢~");
         }
     }
+    //删除学生信息
+    @Override
+    public ServicePost DeleteStudent(String username) {
+        Integer deleteStudent = userMapper.DeleteStudent(username);
+        if (deleteStudent!=0){
+            return ServicePost.CreateTrueCodMsg("删除学生信息成功呢!");
+        }else {
+            return ServicePost.CreateErrorCodMsg("删除学生信息失败呢~");
+        }
+    }
 }

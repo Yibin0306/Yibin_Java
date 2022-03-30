@@ -5,10 +5,7 @@ import ClassSystem.entity.ServicePost;
 import ClassSystem.entity.User;
 import ClassSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -28,4 +25,9 @@ public class LoginController {
         return userService.StudentList(pageHelp);
     }
 
+    //删除学生信息
+    @DeleteMapping(value = "/CenterData")
+    public ServicePost CenterData(String username){
+        return userService.DeleteStudent(username);
+    }
 }

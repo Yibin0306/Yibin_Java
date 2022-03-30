@@ -17,4 +17,9 @@
         select * from t_user where roleid=3 limit #{start},#{end};
     </select>
 
+    <!-- 根据学号删除学生信息 -->
+    <delete id="DeleteStudent" parameterType="User">
+        delete from t_user where username=#{username}
+    </delete>
+
 </mapper>

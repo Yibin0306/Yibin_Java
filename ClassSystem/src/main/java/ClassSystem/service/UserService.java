@@ -9,4 +9,6 @@ public interface UserService {
     ServicePost login(User user);
     //获取学生列表,page值
     ServicePost StudentList(PageHelp pageHelp);
+    //删除学生信息
+    ServicePost DeleteStudent(String username);
 }
