@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/user")
-public class LoginController {
+public class UserController {
     @Autowired
     private UserService userService;
 
