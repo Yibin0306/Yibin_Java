@@ -30,6 +30,7 @@ public class UserController {
     public ServicePost CenterData(String username){
         return userService.DeleteStudent(username);
     }
+
     //给前端当前页的数据（老师列表，page值）
     @GetMapping(value = "/TeacherList")
     public ServicePost TeacherList(PageHelp pageHelp){
