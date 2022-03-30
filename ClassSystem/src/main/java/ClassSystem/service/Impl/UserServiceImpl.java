@@ -41,6 +41,21 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("获取学生列表没有数据呢~");
         }
     }
+    //查询框查询学生
+    @Override
+    public ServicePost searchStudent(User user) {
+        if (user.getPage()==0){
+            user.setPage(1);
+        }
+        if (user.getEnd()==0){
+            user.setEnd(10);
+        }
+        int start = (user.getPage()-1)* user.getEnd();
+        user.setStart(start);
+        int Total = userMapper.searchStudentTotal(user);
+        List<User> searchStudent = userMapper.searchStudent(user);
+        return servicePost.CreateTrueCodMsgList(searchStudent,Total,"获取成功呢!");
+    }
     //删除学生信息
     @Override
     public ServicePost DeleteStudent(String username) {

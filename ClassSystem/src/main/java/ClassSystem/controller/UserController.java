@@ -25,6 +25,12 @@ public class UserController {
         return userService.StudentList(pageHelp);
     }
 
+    //查询框查询学生
+    @PostMapping(value = "/searchStudent")
+    public ServicePost searchStudent(User user){
+        return userService.searchStudent(user);
+    }
+
     //删除学生信息
     @DeleteMapping(value = "/CenterData")
     public ServicePost CenterData(String username){

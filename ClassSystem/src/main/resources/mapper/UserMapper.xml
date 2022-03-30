@@ -17,6 +17,34 @@
         select * from t_user where roleid=3 limit #{start},#{end};
     </select>
 
+    <!--查询框查询学生-->
+    <select id="searchStudent" parameterType="User" resultType="User">
+        select * from t_user where roleid=3
+        <if test="username!=null">
+            and (username = #{username} or username like concat('%',#{username},'%'))
+        </if>
+        <if test="name!=null">
+            and (name = #{name} or name like concat('%',#{name},'%'))
+        </if>
+        <if test="dorm!=null">
+            and (dorm = #{dorm} or dorm like concat('%',#{dorm},'%'))
+        </if>
+        limit #{start},#{end};
+    </select>
+    <!--返回多少行-->
+    <select id="searchStudentTotal" parameterType="User" resultType="int">
+        select count(1) from t_user where roleid=3
+        <if test="username!=null">
+            and (username = #{username} or username like concat('%',#{username},'%'))
+        </if>
+        <if test="name!=null">
+            and (name = #{name} or name like concat('%',#{name},'%'))
+        </if>
+        <if test="dorm!=null">
+            and (dorm = #{dorm} or dorm like concat('%',#{dorm},'%'))
+        </if>
+    </select>
+
     <!-- 根据学号删除学生信息 -->
     <delete id="DeleteStudent" parameterType="User">
         delete from t_user where username=#{username}

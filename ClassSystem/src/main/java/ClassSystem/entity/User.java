@@ -8,11 +8,14 @@ public class User {
     private String dorm;
     private String address;
     private int roleid;
+    private int start;
+    private int end;
+    private int page;
 
     public User() {
     }
 
-    public User(String username, String password, String name, String phone, String dorm, String address, int roleid) {
+    public User(String username, String password, String name, String phone, String dorm, String address, int roleid, int start, int end, int page) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -20,6 +23,9 @@ public class User {
         this.dorm = dorm;
         this.address = address;
         this.roleid = roleid;
+        this.start = start;
+        this.end = end;
+        this.page = page;
     }
 
     public String getUsername() {
@@ -78,6 +84,30 @@ public class User {
         this.roleid = roleid;
     }
 
+    public int getStart() {
+        return start;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    public int getEnd() {
+        return end;
+    }
+
+    public void setEnd(int end) {
+        this.end = end;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -88,6 +118,9 @@ public class User {
                 ", dorm='" + dorm + '\'' +
                 ", address='" + address + '\'' +
                 ", roleid=" + roleid +
+                ", start=" + start +
+                ", end=" + end +
+                ", page=" + page +
                 '}';
     }
 }
