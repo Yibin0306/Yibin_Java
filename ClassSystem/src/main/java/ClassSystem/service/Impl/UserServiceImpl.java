@@ -6,6 +6,7 @@ import ClassSystem.entity.ServicePost;
 import ClassSystem.entity.User;
 import ClassSystem.mapper.UserMapper;
 import ClassSystem.service.UserService;
+import ClassSystem.utility.RedisTemplateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -16,6 +17,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private ServicePost servicePost;
+    @Autowired
+    private RedisTemplateUtil redisTemplateUtil;
 
     //登录验证
     @Override
@@ -24,15 +27,20 @@ public class UserServiceImpl implements UserService {
         if (login!=null){
             return ServicePost.CreateTrueCodMsg("欢迎您，娇贵的小公主~");
         }else{
-            return ServicePost.CreateErrorCodMsg("账号或密码错误呢~");
+            long CurrentTime = System.currentTimeMillis();
+            String token = login.getName()+CurrentTime;
+            login.setToken(token);
+            return servicePost.CreateTrueLogin(login);
         }
     }
     //获取平台数据
     @Override
     public ServicePost PersonNum(PersonNum personNum) {
         PersonNum personNums = userMapper.PersonNum(personNum);
+        personNum.setTeacherNum(personNums.getTeacherNum());
+        personNum.setStudentNum(personNums.getStudentNum());
         personNum.setNotice("我是平台公告！");
-        return servicePost.PersonNum(personNums);
+        return servicePost.PersonNum(personNum);
     }
     //返回前端页面数据（学生列表,page值）
     @Override

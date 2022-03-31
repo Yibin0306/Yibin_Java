@@ -7,6 +7,7 @@ public class User {
     private String phone;
     private String dorm;
     private String address;
+    private String token;
     private int roleid;
     private int start;
     private int end;
@@ -15,13 +16,14 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String name, String phone, String dorm, String address, int roleid, int start, int end, int page) {
+    public User(String username, String password, String name, String phone, String dorm, String address, String token, int roleid, int start, int end, int page) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.phone = phone;
         this.dorm = dorm;
         this.address = address;
+        this.token = token;
         this.roleid = roleid;
         this.start = start;
         this.end = end;
@@ -76,6 +78,14 @@ public class User {
         this.address = address;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public int getRoleid() {
         return roleid;
     }
@@ -117,6 +127,7 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", dorm='" + dorm + '\'' +
                 ", address='" + address + '\'' +
+                ", token='" + token + '\'' +
                 ", roleid=" + roleid +
                 ", start=" + start +
                 ", end=" + end +
