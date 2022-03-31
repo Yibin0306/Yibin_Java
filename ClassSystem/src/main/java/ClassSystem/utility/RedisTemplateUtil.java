@@ -11,20 +11,25 @@ public class RedisTemplateUtil {
     @Autowired
     private StringRedisTemplate template;
 
-    @RequestMapping(value = "/setValue")
     public String setValue(String key,String value){
         template.opsForValue().append(key, value);
         return "保存成功";
     }
 
-    @RequestMapping(value = "/getValue")
     public String getValue(String key){
         if (!template.hasKey(key)){
             return "key不存在，请先保存数据";
         }else {
             String value = template.opsForValue().get(key);//根据key获取缓存中的val
-            System.out.println(value);
             return "获取到缓存中的数据：value="+value;
         }
+    }
+
+    public String deleteValue(String key){
+        if (template.hasKey(key)){
+            template.delete(key);
+            return "数据删除成功";
+        }
+        return "key不存在，无需删除";
     }
 }

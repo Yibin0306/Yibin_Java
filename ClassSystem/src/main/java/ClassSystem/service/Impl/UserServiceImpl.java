@@ -7,6 +7,7 @@ import ClassSystem.entity.User;
 import ClassSystem.mapper.UserMapper;
 import ClassSystem.service.UserService;
 import ClassSystem.utility.RedisTemplateUtil;
+import ClassSystem.utility.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -25,12 +26,13 @@ public class UserServiceImpl implements UserService {
     public ServicePost login(User user) {
         User login = userMapper.login(user);
         if (login!=null){
-            return ServicePost.CreateTrueCodMsg("欢迎您，娇贵的小公主~");
-        }else{
             long CurrentTime = System.currentTimeMillis();
-            String token = login.getName()+CurrentTime;
+            String token = login.getUsername()+CurrentTime;
             login.setToken(token);
+            redisTemplateUtil.setValue("token",token);
             return servicePost.CreateTrueLogin(login);
+        }else{
+            return ServicePost.CreateErrorCodMsg("密码或账号错误呢~");
         }
     }
     //获取平台数据
@@ -45,6 +47,8 @@ public class UserServiceImpl implements UserService {
     //返回前端页面数据（学生列表,page值）
     @Override
     public ServicePost StudentList(PageHelp pageHelp) {
+        String currentToken = UserRequest.getCurrentToken("token");
+
         int total = userMapper.TotalCount();
         if (total>0){
             pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
