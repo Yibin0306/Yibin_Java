@@ -12,7 +12,7 @@ public interface UserMapper {
     //登录操作
     User login(User user);
     //获取平台数据
-    List<PersonNum> PersonNum(PersonNum personNum);
+    PersonNum PersonNum(PersonNum personNum);
     //返回多少行（page）
     int TotalCount();
     //获取学生列表

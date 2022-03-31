@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ClassSystem.mapper.UserMapper">
-
     <!--登录验证-->
     <select id="login" parameterType="User" resultType="User">
         select * from t_user where username=#{username} and password=#{password};
     </select>
 
     <!--查询老师和学生的人数-->
-     <select id="PersonNum" parameterType="User" resultType="PersonNum">
+     <select id="PersonNum" resultType="PersonNum">
          select T.tnum teacherNum,S.snum studentNum from
          (select count(*) tnum from t_user where roleid=2) T
          left join
