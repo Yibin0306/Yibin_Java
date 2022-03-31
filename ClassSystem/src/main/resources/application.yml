@@ -1,12 +1,18 @@
 server:
-  port: 9090
+  port: 80
 
 spring:
+  #配置jdbc相关信息
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/classsystem?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
     username: root
     password: 202306
     driver-class-name: com.mysql.cj.jdbc.Driver
+  #配置redis相关信息
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
 
 mybatis:
   mapper-locations: mapper/*.xml
