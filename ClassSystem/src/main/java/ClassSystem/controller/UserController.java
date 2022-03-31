@@ -1,6 +1,7 @@
 package ClassSystem.controller;
 
 import ClassSystem.entity.PageHelp;
+import ClassSystem.entity.PersonNum;
 import ClassSystem.entity.ServicePost;
 import ClassSystem.entity.User;
 import ClassSystem.service.UserService;
@@ -17,6 +18,12 @@ public class UserController {
     @PostMapping(value = "/login")
     public ServicePost login(User user){
         return userService.login(user);
+    }
+
+    //首页获取平台数据
+    @GetMapping(value = "/CenterData")
+    public ServicePost CenterData(PersonNum personNum){
+        return userService.PersonNum(personNum);
     }
 
     //给前端当前页的数据（学生列表，page值）
@@ -54,4 +61,5 @@ public class UserController {
     public ServicePost deleteTeacher(String username){
         return userService.DeleteTeacher(username);
     }
+
 }

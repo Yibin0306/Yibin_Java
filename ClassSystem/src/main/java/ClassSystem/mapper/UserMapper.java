@@ -1,6 +1,7 @@
 package ClassSystem.mapper;
 
 import ClassSystem.entity.PageHelp;
+import ClassSystem.entity.PersonNum;
 import ClassSystem.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,6 +11,8 @@ import java.util.List;
 public interface UserMapper {
     //登录操作
     User login(User user);
+    //获取平台数据
+    List<PersonNum> PersonNum(PersonNum personNum);
     //返回多少行（page）
     int TotalCount();
     //获取学生列表

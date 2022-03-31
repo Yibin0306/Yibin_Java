@@ -1,6 +1,7 @@
 package ClassSystem.service.Impl;
 
 import ClassSystem.entity.PageHelp;
+import ClassSystem.entity.PersonNum;
 import ClassSystem.entity.ServicePost;
 import ClassSystem.entity.User;
 import ClassSystem.mapper.UserMapper;
@@ -25,6 +26,14 @@ public class UserServiceImpl implements UserService {
         }else{
             return ServicePost.CreateErrorCodMsg("账号或密码错误呢~");
         }
+    }
+    //获取平台数据
+    @Override
+    public ServicePost PersonNum(PersonNum personNum) {
+        personNum.setTeacherNum(520);
+        personNum.setStudentNum(521);
+        personNum.setNotice("这是平台公告~");
+        return servicePost.PersonNum(personNum);
     }
     //返回前端页面数据（学生列表,page值）
     @Override
@@ -100,5 +109,6 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateTrueCodMsg("删除老师信息成功呢!");
         }else {
             return ServicePost.CreateErrorCodMsg("删除老师信息失败呢~");
-        }    }
+        }
+    }
 }
