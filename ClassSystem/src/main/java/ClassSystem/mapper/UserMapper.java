@@ -1,7 +1,6 @@
 package ClassSystem.mapper;
 
 import ClassSystem.entity.PageHelp;
-import ClassSystem.entity.ServicePost;
 import ClassSystem.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
