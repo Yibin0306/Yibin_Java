@@ -1,5 +1,7 @@
 package ClassSystem.entity;
 
+import java.util.List;
+
 public class PersonNum {
     private int teacherNum;
     private int studentNum;
@@ -46,4 +48,5 @@ public class PersonNum {
                 ", Notice='" + Notice + '\'' +
                 '}';
     }
+
 }

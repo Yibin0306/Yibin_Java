@@ -27,13 +27,16 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("账号或密码错误呢~");
         }
     }
-    //获取平台数据
+    //获取平台数据(有bug)
     @Override
     public ServicePost PersonNum(PersonNum personNum) {
-        personNum.setTeacherNum(520);
-        personNum.setStudentNum(521);
+        List<PersonNum> personNums = userMapper.PersonNum(personNum);
+        personNum.setTeacherNum(personNum.getTeacherNum());
+        personNum.setStudentNum(personNum.getStudentNum());
+        System.out.println(personNum);
+        System.out.println(personNums);
         personNum.setNotice("这是平台公告~");
-        return servicePost.PersonNum(personNum);
+        return servicePost.PersonNum(personNums);
     }
     //返回前端页面数据（学生列表,page值）
     @Override

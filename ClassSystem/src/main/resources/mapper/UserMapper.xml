@@ -7,6 +7,15 @@
         select * from t_user where username=#{username} and password=#{password};
     </select>
 
+    <!--查询老师和学生的人数-->
+     <select id="PersonNum" parameterType="User" resultType="PersonNum">
+         select T.tnum teacherNum,S.snum studentNum from
+         (select count(*) tnum from t_user where roleid=2) T
+         left join
+         (select count(*) snum from t_user where roleid=3) S
+         on 1=1
+     </select>
+
     <!--返回多少行-->
     <select id="TotalCount"  resultType="int">
         select count(1) from t_user;
