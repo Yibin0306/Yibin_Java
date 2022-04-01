@@ -2,7 +2,6 @@ package ClassSystem.entity;
 
 import ClassSystem.utility.Const;
 import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
 import java.util.List;
 
