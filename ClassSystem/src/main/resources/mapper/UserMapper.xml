@@ -15,9 +15,9 @@
          on 1=1
      </select>
 
-    <!--返回多少行-->
-    <select id="TotalCount"  resultType="int">
-        select count(1) from t_user;
+    <!--返回学生列表多少行（page）-->
+    <select id="StudentTotalCount"  resultType="int">
+        select count(1) from t_user where roleid=3;
     </select>
 
     <!--获取学生列表-->
@@ -58,6 +58,11 @@
     <delete id="DeleteStudent" parameterType="User">
         delete from t_user where username=#{username}
     </delete>
+
+    <!--返回教师列表多少行（page）-->
+    <select id="TeacherTotalCount"  resultType="int">
+        select count(1) from t_user where roleid=2;
+    </select>
 
     <!--获取老师列表-->
     <select id="TeacherList" parameterType="PageHelp" resultType="User">

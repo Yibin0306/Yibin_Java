@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     public ServicePost StudentList(PageHelp pageHelp) {
         String currentToken = UserRequest.getCurrentToken("token");
 
-        int total = userMapper.TotalCount();
+        int total = userMapper.StudentTotalCount();
         if (total>0){
             pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
             pageHelp.setEnd(pageHelp.getPagenum());
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
     //获取老师列表,page值
     @Override
     public ServicePost TeacherList(PageHelp pageHelp) {
-        int total = userMapper.TotalCount();
+        int total = userMapper.TeacherTotalCount();
         if (total>0){
             pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
             pageHelp.setEnd(pageHelp.getPagenum());
