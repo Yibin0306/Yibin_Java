@@ -54,6 +54,12 @@
         </if>
     </select>
 
+    <!-- 添加学生信息 -->
+    <insert id="addStudent" parameterType="User">
+        insert into t_user (username,name,password,phone,dorm,address,roleid)
+        value (#{username}, #{name},#{password},#{phone},#{dorm},#{address},3)
+    </insert>
+
     <!-- 根据UserName删除学生信息 -->
     <delete id="DeleteStudent" parameterType="User">
         delete from t_user where username=#{username}

@@ -38,6 +38,12 @@ public class UserController {
         return userService.searchStudent(user);
     }
 
+    //添加学生信息
+    @PostMapping(value = "/addStudent")
+    public ServicePost addStudent(User user){
+        return userService.addStudent(user);
+    }
+
     //删除单个学生信息
     @GetMapping(value = "/deleteStudent")
     public ServicePost CenterData(String username){
