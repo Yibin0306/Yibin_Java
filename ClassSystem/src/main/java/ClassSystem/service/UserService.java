@@ -10,16 +10,20 @@ public interface UserService {
     ServicePost login(User user);
     //获取平台数据
     ServicePost PersonNum(PersonNum personNum);
+
+    //学生业务
     //获取学生列表,page值
     ServicePost StudentList(PageHelp pageHelp);
     //查询框查询学生
     ServicePost searchStudent(User user);
     //删除单个学生信息
     ServicePost DeleteStudent(String username);
-    //获取老师列表,page值
+
+    //教师业务
+    //获取教师列表,page值
     ServicePost TeacherList(PageHelp pageHelp);
     //查询框查询教师
     ServicePost searchTeacher(User user);
-    //删除单个老师信息
+    //删除单个教师信息
     ServicePost DeleteTeacher(String username);
 }
