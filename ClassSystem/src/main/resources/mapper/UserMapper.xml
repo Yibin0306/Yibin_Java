@@ -125,4 +125,5 @@
     <delete id="DeleteTeacher" parameterType="User">
         delete from t_user where username=#{username}
     </delete>
+
 </mapper>

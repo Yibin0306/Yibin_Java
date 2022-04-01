@@ -24,10 +24,10 @@ public interface UserMapper {
     int ClassTotalCount();
     //获取班级列表
     List<ClassList> ClassList(ClassList classList);
-    //查询框查询学生
-    List<User> searchStudent(User user);
     //返回多少行（page）学生
     int searchStudentTotal(User user);
+    //查询框查询学生
+    List<User> searchStudent(User user);
     //添加学生信息
     Integer addStudent(User user);
     //修改学生信息
@@ -40,10 +40,10 @@ public interface UserMapper {
     int TeacherTotalCount();
     //获取教师列表
     List<User> TeacherList(PageHelp pageHelp);
-    //查询框查询教师
-    List<User> searchTeacher(User user);
     //返回多少行（page）教师
     int searchTeacherTotal(User user);
+    //查询框查询教师
+    List<User> searchTeacher(User user);
     //删除单个老师信息
     Integer DeleteTeacher(String username);
 }

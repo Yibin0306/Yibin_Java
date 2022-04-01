@@ -27,11 +27,12 @@ public class UserServiceImpl implements UserService {
             String token = login.getUsername()+CurrentTime;
             login.setToken(token);
             redisTemplateUtil.setValue("token",token);
-            return servicePost.CreateTrueLogin(login);
+            return servicePost.CreateTrueData(login);
         }else{
             return ServicePost.CreateErrorCodMsg("密码或账号错误呢~");
         }
     }
+
     //获取平台数据
     @Override
     public ServicePost PersonNum(PersonNum personNum) {
@@ -39,8 +40,9 @@ public class UserServiceImpl implements UserService {
         personNum.setTeacherNum(personNums.getTeacherNum());
         personNum.setStudentNum(personNums.getStudentNum());
         personNum.setNotice("我是平台公告！");
-        return servicePost.PersonNum(personNum);
+        return servicePost.CreateTrueData(personNum);
     }
+
     //返回前端页面数据（学生列表,page值）
     @Override
     public ServicePost StudentList(PageHelp pageHelp) {
@@ -51,18 +53,20 @@ public class UserServiceImpl implements UserService {
             pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
             pageHelp.setEnd(pageHelp.getPagenum());
             List<User> StudentList = userMapper.StudentList(pageHelp);
-            return servicePost.CreateTrueCodMsgList(StudentList,total);
+            return servicePost.CreateTrueList(StudentList,total);
         }else {
             return ServicePost.CreateErrorCodMsg("学生列表没有数据呢~");
         }
     }
+
     //获取班级列表
     @Override
     public ServicePost ClassList(ClassList classList) {
         int total = userMapper.ClassTotalCount();
         List<ClassList> classLists = userMapper.ClassList(classList);
-        return servicePost.CreateTrueCodMsgList(classLists,total);
+        return servicePost.CreateTrueList(classLists,total);
     }
+
     //查询框查询学生
     @Override
     public ServicePost searchStudent(User user) {
@@ -76,8 +80,9 @@ public class UserServiceImpl implements UserService {
         user.setStart(start);
         int Total = userMapper.searchStudentTotal(user);
         List<User> searchStudent = userMapper.searchStudent(user);
-        return servicePost.CreateTrueCodMsgList(searchStudent,Total);
+        return servicePost.CreateTrueList(searchStudent,Total);
     }
+
     //添加学生信息
     @Override
     public ServicePost addStudent(User user) {
@@ -88,6 +93,7 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("添加学生信息失败呢~");
         }
     }
+
     //修改学生信息
     @Override
     public ServicePost updateStudent(User user) {
@@ -98,6 +104,7 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("修改学生信息失败呢~");
         }
     }
+
     //删除单个学生信息
     @Override
     public ServicePost DeleteStudent(String username) {
@@ -108,6 +115,7 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("删除学生信息失败呢~");
         }
     }
+
     //获取老师列表,page值
     @Override
     public ServicePost TeacherList(PageHelp pageHelp) {
@@ -116,11 +124,12 @@ public class UserServiceImpl implements UserService {
             pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
             pageHelp.setEnd(pageHelp.getPagenum());
             List<User> TeacherList = userMapper.TeacherList(pageHelp);
-            return servicePost.CreateTrueCodMsgList(TeacherList,total);
+            return servicePost.CreateTrueList(TeacherList,total);
         }else {
             return ServicePost.CreateErrorCodMsg("老师列表没有数据呢~");
         }
     }
+
     //查询框查询教师
     @Override
     public ServicePost searchTeacher(User user) {
@@ -134,8 +143,9 @@ public class UserServiceImpl implements UserService {
         user.setStart(start);
         int Total = userMapper.searchTeacherTotal(user);
         List<User> searchTeacher = userMapper.searchTeacher(user);
-        return servicePost.CreateTrueCodMsgList(searchTeacher,Total);
+        return servicePost.CreateTrueList(searchTeacher,Total);
     }
+
     //删除单个老师信息
     @Override
     public ServicePost DeleteTeacher(String username) {
@@ -146,4 +156,5 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("删除老师信息失败呢~");
         }
     }
+
 }

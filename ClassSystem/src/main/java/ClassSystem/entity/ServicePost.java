@@ -91,16 +91,12 @@ public class ServicePost<R> implements Serializable {
     public static ServicePost CreateErrorCodMsg(String msg){
         return new ServicePost(Const.false_101,msg);
     }
-    //登录验证（验证token）
-    public ServicePost CreateTrueLogin(R data){
+    //登录验证（验证token） and 首页获取平台数据
+    public ServicePost CreateTrueData(R data){
         return new ServicePost(Const.true_200,data);
     }
-    //首页获取平台数据
-    public ServicePost PersonNum(R data){
-        return new ServicePost(Const.true_200,data);
-    }
-    //返回(学生and老师列表以及行数
-    public ServicePost CreateTrueCodMsgList(List<R> list,int total){
+    //返回(班级and学生and老师)列表以及行数
+    public ServicePost CreateTrueList(List<R> list,int total){
         return new ServicePost(Const.true_200,list,total);
     }
 }
