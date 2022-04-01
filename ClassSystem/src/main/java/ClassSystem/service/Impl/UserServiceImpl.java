@@ -1,9 +1,6 @@
 package ClassSystem.service.Impl;
 
-import ClassSystem.entity.PageHelp;
-import ClassSystem.entity.PersonNum;
-import ClassSystem.entity.ServicePost;
-import ClassSystem.entity.User;
+import ClassSystem.entity.*;
 import ClassSystem.mapper.UserMapper;
 import ClassSystem.service.UserService;
 import ClassSystem.utility.RedisTemplateUtil;
@@ -58,6 +55,13 @@ public class UserServiceImpl implements UserService {
         }else {
             return ServicePost.CreateErrorCodMsg("学生列表没有数据呢~");
         }
+    }
+    //获取班级列表
+    @Override
+    public ServicePost ClassList(ClassList classList) {
+        int total = userMapper.ClassTotalCount();
+        List<ClassList> classLists = userMapper.ClassList(classList);
+        return servicePost.CreateTrueCodMsgList(classLists,total,"获取班级列表成功呢!");
     }
     //查询框查询学生
     @Override

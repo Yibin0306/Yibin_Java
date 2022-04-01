@@ -1,9 +1,6 @@
 package ClassSystem.service;
 
-import ClassSystem.entity.PageHelp;
-import ClassSystem.entity.PersonNum;
-import ClassSystem.entity.ServicePost;
-import ClassSystem.entity.User;
+import ClassSystem.entity.*;
 
 public interface UserService {
     //登录操作
@@ -14,6 +11,8 @@ public interface UserService {
     //学生业务
     //获取学生列表,page值
     ServicePost StudentList(PageHelp pageHelp);
+    //获取班级列表
+    ServicePost ClassList(ClassList classList);
     //查询框查询学生
     ServicePost searchStudent(User user);
     //添加学生信息

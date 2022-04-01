@@ -25,6 +25,16 @@
         select * from t_user where roleid=3 limit #{start},#{end};
     </select>
 
+    <!--返回班级列表行数（page）-->
+    <select id="ClassTotalCount"  resultType="int">
+        select count(1) from classname;
+    </select>
+
+    <!--获取班级列表-->
+    <select id="ClassList" parameterType="ClassName" resultType="ClassName">
+        select * from classname;
+    </select>
+
     <!--查询框查询学生-->
     <select id="searchStudent" parameterType="User" resultType="User">
         select * from t_user where roleid=3

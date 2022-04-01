@@ -1,5 +1,6 @@
 package ClassSystem.mapper;
 
+import ClassSystem.entity.ClassList;
 import ClassSystem.entity.PageHelp;
 import ClassSystem.entity.PersonNum;
 import ClassSystem.entity.User;
@@ -19,6 +20,10 @@ public interface UserMapper {
     int StudentTotalCount();
     //获取学生列表
     List<User> StudentList(PageHelp pageHelp);
+    //返回班级列表行数（page）
+    int ClassTotalCount();
+    //获取班级列表
+    List<ClassList> ClassList(ClassList classList);
     //查询框查询学生
     List<User> searchStudent(User user);
     //返回多少行（page）学生

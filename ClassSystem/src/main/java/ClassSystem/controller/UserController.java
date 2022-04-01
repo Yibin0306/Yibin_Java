@@ -1,9 +1,6 @@
 package ClassSystem.controller;
 
-import ClassSystem.entity.PageHelp;
-import ClassSystem.entity.PersonNum;
-import ClassSystem.entity.ServicePost;
-import ClassSystem.entity.User;
+import ClassSystem.entity.*;
 import ClassSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +27,12 @@ public class UserController {
     @GetMapping(value = "/StudentList")
     public ServicePost StudentList(PageHelp pageHelp){
         return userService.StudentList(pageHelp);
+    }
+
+    //给前端当前页的数据（班级列表，page值）
+    @GetMapping(value = "/ClassNameList")
+    public ServicePost ClassNameList(ClassList classList){
+        return userService.ClassList(classList);
     }
 
     //查询框查询学生
