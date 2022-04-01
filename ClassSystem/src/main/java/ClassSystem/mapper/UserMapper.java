@@ -13,6 +13,8 @@ public interface UserMapper {
     User login(User user);
     //获取平台数据
     PersonNum PersonNum(PersonNum personNum);
+
+    //学生业务
     //返回学生列表多少行（page）
     int StudentTotalCount();
     //获取学生列表
@@ -23,6 +25,8 @@ public interface UserMapper {
     int searchStudentTotal(User user);
     //删除单个学生信息
     Integer DeleteStudent(String username);
+
+    //教师业务
     //返回教师列表多少行（page）
     int TeacherTotalCount();
     //获取教师列表
