@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
             pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
             pageHelp.setEnd(pageHelp.getPagenum());
             List<User> StudentList = userMapper.StudentList(pageHelp);
-            return servicePost.CreateTrueCodMsgList(StudentList,total,"获取学生列表成功呢!");
+            return servicePost.CreateTrueCodMsgList(StudentList,total);
         }else {
             return ServicePost.CreateErrorCodMsg("学生列表没有数据呢~");
         }
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     public ServicePost ClassList(ClassList classList) {
         int total = userMapper.ClassTotalCount();
         List<ClassList> classLists = userMapper.ClassList(classList);
-        return servicePost.CreateTrueCodMsgList(classLists,total,"获取班级列表成功呢!");
+        return servicePost.CreateTrueCodMsgList(classLists,total);
     }
     //查询框查询学生
     @Override
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
         user.setStart(start);
         int Total = userMapper.searchStudentTotal(user);
         List<User> searchStudent = userMapper.searchStudent(user);
-        return servicePost.CreateTrueCodMsgList(searchStudent,Total,"获取成功呢!");
+        return servicePost.CreateTrueCodMsgList(searchStudent,Total);
     }
     //添加学生信息
     @Override
@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService {
             pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
             pageHelp.setEnd(pageHelp.getPagenum());
             List<User> TeacherList = userMapper.TeacherList(pageHelp);
-            return servicePost.CreateTrueCodMsgList(TeacherList,total,"获取老师列表成功呢!");
+            return servicePost.CreateTrueCodMsgList(TeacherList,total);
         }else {
             return ServicePost.CreateErrorCodMsg("老师列表没有数据呢~");
         }
@@ -134,7 +134,7 @@ public class UserServiceImpl implements UserService {
         user.setStart(start);
         int Total = userMapper.searchTeacherTotal(user);
         List<User> searchTeacher = userMapper.searchTeacher(user);
-        return servicePost.CreateTrueCodMsgList(searchTeacher,Total,"获取成功呢!");
+        return servicePost.CreateTrueCodMsgList(searchTeacher,Total);
     }
     //删除单个老师信息
     @Override

@@ -1,25 +1,25 @@
 package ClassSystem.entity;
 
 public class ClassList {
-    private int classID;
+    private int class_id;
     private String value;
     private String label;
 
     public ClassList() {
     }
 
-    public ClassList(int classID, String value, String label) {
-        this.classID = classID;
+    public ClassList(int class_id, String value, String label) {
+        this.class_id = class_id;
         this.value = value;
         this.label = label;
     }
 
-    public int getClassID() {
-        return classID;
+    public int getClass_id() {
+        return class_id;
     }
 
-    public void setClassID(int classID) {
-        this.classID = classID;
+    public void setClass_id(int class_id) {
+        this.class_id = class_id;
     }
 
     public String getValue() {
@@ -40,8 +40,8 @@ public class ClassList {
 
     @Override
     public String toString() {
-        return "ClassName{" +
-                "classID=" + classID +
+        return "ClassList{" +
+                "class_id=" + class_id +
                 ", value='" + value + '\'' +
                 ", label='" + label + '\'' +
                 '}';

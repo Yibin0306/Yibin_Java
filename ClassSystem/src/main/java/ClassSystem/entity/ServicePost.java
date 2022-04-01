@@ -100,7 +100,7 @@ public class ServicePost<R> implements Serializable {
         return new ServicePost(Const.true_200,data);
     }
     //返回(学生and老师列表以及行数
-    public ServicePost CreateTrueCodMsgList(List<R> list,int total,String msg){
+    public ServicePost CreateTrueCodMsgList(List<R> list,int total){
         return new ServicePost(Const.true_200,list,total);
     }
 }
