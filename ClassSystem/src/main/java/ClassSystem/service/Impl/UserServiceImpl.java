@@ -84,6 +84,16 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("添加学生信息失败呢~");
         }
     }
+    //修改学生信息
+    @Override
+    public ServicePost updateStudent(User user) {
+        Integer updateStudent = userMapper.updateStudent(user);
+        if (updateStudent!=0){
+            return ServicePost.CreateTrueCodMsg("修改学生信息成功呢!");
+        }else {
+            return ServicePost.CreateErrorCodMsg("修改学生信息失败呢~");
+        }
+    }
     //删除单个学生信息
     @Override
     public ServicePost DeleteStudent(String username) {

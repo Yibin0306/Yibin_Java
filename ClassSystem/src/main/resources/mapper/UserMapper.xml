@@ -60,6 +60,13 @@
         value (#{username}, #{name},#{password},#{phone},#{dorm},#{address},3)
     </insert>
 
+    <!-- 修改学生信息 -->
+    <update id="updateStudent" parameterType="User">
+        update t_user set
+        name=#{name},password=#{password},phone=#{phone},dorm=#{dorm},address=#{address}
+        where username =#{username}
+    </update>
+
     <!-- 根据UserName删除学生信息 -->
     <delete id="DeleteStudent" parameterType="User">
         delete from t_user where username=#{username}

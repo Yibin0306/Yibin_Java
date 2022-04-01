@@ -44,6 +44,12 @@ public class UserController {
         return userService.addStudent(user);
     }
 
+    //修改学生信息
+    @PostMapping(value = "/editStudent")
+    public ServicePost editStudent(User user){
+        return userService.updateStudent(user);
+    }
+
     //删除单个学生信息
     @GetMapping(value = "/deleteStudent")
     public ServicePost CenterData(String username){

@@ -25,6 +25,8 @@ public interface UserMapper {
     int searchStudentTotal(User user);
     //添加学生信息
     Integer addStudent(User user);
+    //修改学生信息
+    Integer updateStudent(User user);
     //删除单个学生信息
     Integer DeleteStudent(String username);
 

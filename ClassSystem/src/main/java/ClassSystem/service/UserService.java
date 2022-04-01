@@ -18,6 +18,8 @@ public interface UserService {
     ServicePost searchStudent(User user);
     //添加学生信息
     ServicePost addStudent(User user);
+    //修改学生信息
+    ServicePost updateStudent(User user);
     //删除单个学生信息
     ServicePost DeleteStudent(String username);
 
