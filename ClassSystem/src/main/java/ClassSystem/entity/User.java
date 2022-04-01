@@ -3,6 +3,7 @@ package ClassSystem.entity;
 public class User {
     private String username;
     private String password;
+    private String classname;
     private String name;
     private String phone;
     private String dorm;
@@ -16,9 +17,10 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String name, String phone, String dorm, String address, String token, int roleid, int start, int end, int page) {
+    public User(String username, String password, String classname, String name, String phone, String dorm, String address, String token, int roleid, int start, int end, int page) {
         this.username = username;
         this.password = password;
+        this.classname = classname;
         this.name = name;
         this.phone = phone;
         this.dorm = dorm;
@@ -44,6 +46,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getClassname() {
+        return classname;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
     }
 
     public String getName() {
@@ -123,6 +133,7 @@ public class User {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", classname='" + classname + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", dorm='" + dorm + '\'' +

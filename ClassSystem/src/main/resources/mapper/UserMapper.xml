@@ -66,8 +66,8 @@
 
     <!-- 添加学生信息 -->
     <insert id="addStudent" parameterType="User">
-        insert into t_user (username,name,password,phone,dorm,address,roleid)
-        value (#{username}, #{name},#{password},#{phone},#{dorm},#{address},3)
+        insert into t_user (username,name,password,phone,dorm,address,classname,roleid)
+        value (#{username}, #{name},#{password},#{phone},#{dorm},#{address},#{classname},3)
     </insert>
 
     <!-- 修改学生信息 -->
