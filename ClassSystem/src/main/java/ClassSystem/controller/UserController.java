@@ -39,13 +39,13 @@ public class UserController {
     }
 
     //添加学生信息
-    @PostMapping(value = "/addStudent")
+    @PostMapping(value = "addStudent")
     public ServicePost addStudent(User user){
         return userService.addStudent(user);
     }
 
     //修改学生信息
-    @PostMapping(value = "/editStudent")
+    @PostMapping(value = "editStudent")
     public ServicePost editStudent(User user){
         return userService.updateStudent(user);
     }

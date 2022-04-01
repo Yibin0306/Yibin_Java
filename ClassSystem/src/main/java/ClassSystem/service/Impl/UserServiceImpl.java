@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
             List<User> StudentList = userMapper.StudentList(pageHelp);
             return servicePost.CreateTrueCodMsgList(StudentList,total,"获取学生列表成功呢!");
         }else {
-            return ServicePost.CreateErrorCodMsg("获取学生列表没有数据呢~");
+            return ServicePost.CreateErrorCodMsg("学生列表没有数据呢~");
         }
     }
     //查询框查询学生
@@ -114,7 +114,7 @@ public class UserServiceImpl implements UserService {
             List<User> TeacherList = userMapper.TeacherList(pageHelp);
             return servicePost.CreateTrueCodMsgList(TeacherList,total,"获取老师列表成功呢!");
         }else {
-            return ServicePost.CreateErrorCodMsg("获取老师列表没有数据呢~");
+            return ServicePost.CreateErrorCodMsg("老师列表没有数据呢~");
         }
     }
     //查询框查询教师
