@@ -47,6 +47,9 @@
         <if test="dorm!=null">
             and (dorm = #{dorm} or dorm like concat('%',#{dorm},'%'))
         </if>
+        <if test="classname!=null">
+            and (classname = #{classname} or classname like concat('%',#{classname},'%'))
+        </if>
         limit #{start},#{end};
     </select>
 
@@ -62,6 +65,9 @@
         <if test="dorm!=null">
             and (dorm = #{dorm} or dorm like concat('%',#{dorm},'%'))
         </if>
+        <if test="classname!=null">
+            and (classname = #{classname} or classname like concat('%',#{classname},'%'))
+        </if>
     </select>
 
     <!-- 添加学生信息 -->
@@ -73,7 +79,7 @@
     <!-- 修改学生信息 -->
     <update id="updateStudent" parameterType="User">
         update t_user set
-        name=#{name},password=#{password},phone=#{phone},dorm=#{dorm},address=#{address}
+        name=#{name},password=#{password},phone=#{phone},dorm=#{dorm},address=#{address},classname=#{classname}
         where username =#{username}
     </update>
 
