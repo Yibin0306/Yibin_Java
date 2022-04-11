@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("密码或账号错误呢~");
         }
     }
+
     //身份验证
     @Override
     public ServicePost isSign() {
@@ -45,6 +46,7 @@ public class UserServiceImpl implements UserService {
         }
         return ServicePost.CreateErrorToken("身份验证失败");
     }
+
     //获取平台数据
     @Override
     public ServicePost PersonNum(PersonNum personNum) {
