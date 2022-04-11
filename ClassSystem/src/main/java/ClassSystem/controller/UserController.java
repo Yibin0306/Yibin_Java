@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private RedisTemplateUtil redisTemplateUtil;
 
     //登录操作验证
     @PostMapping(value = "/login")
