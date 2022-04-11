@@ -11,6 +11,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //身份验证
+    @GetMapping(value = "/isSign")
+    public ServicePost isSign() {
+        return ServicePost.CreateTrueCodMsg("身份验证成功");
+    }
+
     //登录操作验证
     @PostMapping(value = "/login")
     public ServicePost login(User user){
