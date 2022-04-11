@@ -2,6 +2,8 @@ package ClassSystem.controller;
 
 import ClassSystem.entity.*;
 import ClassSystem.service.UserService;
+import ClassSystem.utility.RedisTemplateUtil;
+import ClassSystem.utility.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +12,21 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private RedisTemplateUtil redisTemplateUtil;
 
     //身份验证
     @GetMapping(value = "/isSign")
     public ServicePost isSign() {
-        return ServicePost.CreateTrueCodMsg("身份验证成功");
+        //session中获取token
+        String token1 = UserRequest.getCurrentToken("token");
+        //redis中获取token
+        final String token2 = redisTemplateUtil.getValue("token");
+        //判断token是否为空&&相同
+        if (token1!=null&&token1.equals(token2)) {
+            return ServicePost.CreateTrueCodMsg("身份验证成功");
+        }
+        return ServicePost.CreateErrorToken("身份验证失败");
     }
 
     //登录操作验证

@@ -20,7 +20,7 @@ public class RedisTemplateUtil {
             return "key不存在，请先保存数据";
         }else {
             String value = template.opsForValue().get(key);//根据key获取缓存中的val
-            return "获取到缓存中的数据：value="+value;
+            return value;
         }
     }
 
