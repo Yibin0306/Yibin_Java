@@ -32,7 +32,19 @@ public class UserServiceImpl implements UserService {
             return ServicePost.CreateErrorCodMsg("密码或账号错误呢~");
         }
     }
-
+    //身份验证
+    @Override
+    public ServicePost isSign() {
+        //session中获取token
+        String token1 = UserRequest.getCurrentToken("token");
+        //redis中获取token
+        final String token2 = redisTemplateUtil.getValue("token");
+        //判断token是否为空&&相同
+        if (token1!=null&&token1.equals(token2)) {
+            return ServicePost.CreateTrueCodMsg("身份验证成功");
+        }
+        return ServicePost.CreateErrorToken("身份验证失败");
+    }
     //获取平台数据
     @Override
     public ServicePost PersonNum(PersonNum personNum) {

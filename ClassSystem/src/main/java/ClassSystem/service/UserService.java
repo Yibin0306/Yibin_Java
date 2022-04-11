@@ -5,6 +5,8 @@ import ClassSystem.entity.*;
 public interface UserService {
     //登录操作
     ServicePost login(User user);
+    //身份验证
+    ServicePost isSign();
     //获取平台数据
     ServicePost PersonNum(PersonNum personNum);
 

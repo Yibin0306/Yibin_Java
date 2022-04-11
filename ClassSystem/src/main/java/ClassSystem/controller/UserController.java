@@ -15,24 +15,16 @@ public class UserController {
     @Autowired
     private RedisTemplateUtil redisTemplateUtil;
 
-    //身份验证
-    @GetMapping(value = "/isSign")
-    public ServicePost isSign() {
-        //session中获取token
-        String token1 = UserRequest.getCurrentToken("token");
-        //redis中获取token
-        final String token2 = redisTemplateUtil.getValue("token");
-        //判断token是否为空&&相同
-        if (token1!=null&&token1.equals(token2)) {
-            return ServicePost.CreateTrueCodMsg("身份验证成功");
-        }
-        return ServicePost.CreateErrorToken("身份验证失败");
-    }
-
     //登录操作验证
     @PostMapping(value = "/login")
     public ServicePost login(User user){
         return userService.login(user);
+    }
+
+    //身份验证
+    @GetMapping(value = "/isSign")
+    public ServicePost isSign() {
+        return userService.isSign();
     }
 
     //首页获取平台数据
