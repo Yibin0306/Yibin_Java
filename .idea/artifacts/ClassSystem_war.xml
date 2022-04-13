@@ -9,7 +9,7 @@
         <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
-    <root id="archive" name="SpringBoot.war">
+    <root id="archive" name="ClassSystem-0.0.1-SNAPSHOT.war">
       <element id="artifact" artifact-name="ClassSystem:war exploded" />
     </root>
   </artifact>

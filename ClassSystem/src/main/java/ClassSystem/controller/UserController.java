@@ -2,8 +2,6 @@ package ClassSystem.controller;
 
 import ClassSystem.entity.*;
 import ClassSystem.service.UserService;
-import ClassSystem.utility.RedisTemplateUtil;
-import ClassSystem.utility.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
