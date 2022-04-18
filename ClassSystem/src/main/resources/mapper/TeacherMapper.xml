@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ClassSystem.mapper.TeacherMapper">
+
+    <!--返回教师列表多少行（page）-->
+    <select id="TeacherTotalCount"  resultType="int">
+        select count(1) from t_user where roleid=2;
+    </select>
+
+    <!--获取老师列表-->
+    <select id="TeacherList" parameterType="PageHelp" resultType="User">
+        select * from t_user where roleid=2 limit #{start},#{end};
+    </select>
+
+    <!--查询框查询教师-->
+    <select id="searchTeacher" parameterType="User" resultType="User">
+        select * from t_user where roleid=2
+        <if test="username!=null">
+            and (username = #{username} or username like concat('%',#{username},'%'))
+        </if>
+        <if test="name!=null">
+            and (name = #{name} or name like concat('%',#{name},'%'))
+        </if>
+        limit #{start},#{end};
+    </select>
+
+    <!--返回多少行（page）教师-->
+    <select id="searchTeacherTotal" parameterType="User" resultType="int">
+        select count(1) from t_user where roleid=2
+        <if test="username!=null">
+            and (username = #{username} or username like concat('%',#{username},'%'))
+        </if>
+        <if test="name!=null">
+            and (name = #{name} or name like concat('%',#{name},'%'))
+        </if>
+    </select>
+
+    <!-- 根据UserName删除老师信息 -->
+    <delete id="DeleteTeacher" parameterType="User">
+        delete from t_user where username=#{username}
+    </delete>
+
+</mapper>

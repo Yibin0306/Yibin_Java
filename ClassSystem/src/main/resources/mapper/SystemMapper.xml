@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ClassSystem.mapper.SystemMapper">
+
+    <!--登录验证-->
+    <select id="login" parameterType="User" resultType="User">
+        select * from t_user where username=#{username} and password=#{password};
+    </select>
+
+    <!--查询老师和学生的人数-->
+     <select id="PersonNum" resultType="PersonNum">
+         select T.tnum teacherNum,S.snum studentNum from
+         (select count(*) tnum from t_user where roleid=2) T
+         left join
+         (select count(*) snum from t_user where roleid=3) S
+         on 1=1
+     </select>
+
+    <!--返回班级列表行数（page）-->
+    <select id="ClassTotalCount"  resultType="int">
+        select count(1) from t_class;
+    </select>
+
+    <!--获取班级列表-->
+    <select id="ClassList" parameterType="ClassList" resultType="ClassList">
+        select * from t_class;
+    </select>
+
+</mapper>

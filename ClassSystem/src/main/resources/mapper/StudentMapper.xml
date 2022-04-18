@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ClassSystem.mapper.UserMapper">
-    <!--登录验证-->
-    <select id="login" parameterType="User" resultType="User">
-        select * from t_user where username=#{username} and password=#{password};
-    </select>
-
-    <!--查询老师和学生的人数-->
-     <select id="PersonNum" resultType="PersonNum">
-         select T.tnum teacherNum,S.snum studentNum from
-         (select count(*) tnum from t_user where roleid=2) T
-         left join
-         (select count(*) snum from t_user where roleid=3) S
-         on 1=1
-     </select>
+<mapper namespace="ClassSystem.mapper.StudentMapper">
 
     <!--返回学生列表多少行（page）-->
     <select id="StudentTotalCount"  resultType="int">
@@ -23,16 +10,6 @@
     <!--获取学生列表-->
     <select id="StudentList" parameterType="PageHelp" resultType="User">
         select * from t_user where roleid=3 limit #{start},#{end};
-    </select>
-
-    <!--返回班级列表行数（page）-->
-    <select id="ClassTotalCount"  resultType="int">
-        select count(1) from t_class;
-    </select>
-
-    <!--获取班级列表-->
-    <select id="ClassList" parameterType="ClassList" resultType="ClassList">
-        select * from t_class;
     </select>
 
     <!--查询框查询学生-->
@@ -85,44 +62,6 @@
 
     <!-- 根据UserName删除学生信息 -->
     <delete id="DeleteStudent" parameterType="User">
-        delete from t_user where username=#{username}
-    </delete>
-
-    <!--返回教师列表多少行（page）-->
-    <select id="TeacherTotalCount"  resultType="int">
-        select count(1) from t_user where roleid=2;
-    </select>
-
-    <!--获取老师列表-->
-    <select id="TeacherList" parameterType="PageHelp" resultType="User">
-        select * from t_user where roleid=2 limit #{start},#{end};
-    </select>
-
-    <!--查询框查询教师-->
-    <select id="searchTeacher" parameterType="User" resultType="User">
-        select * from t_user where roleid=2
-        <if test="username!=null">
-            and (username = #{username} or username like concat('%',#{username},'%'))
-        </if>
-        <if test="name!=null">
-            and (name = #{name} or name like concat('%',#{name},'%'))
-        </if>
-        limit #{start},#{end};
-    </select>
-
-    <!--返回多少行（page）教师-->
-    <select id="searchTeacherTotal" parameterType="User" resultType="int">
-        select count(1) from t_user where roleid=2
-        <if test="username!=null">
-            and (username = #{username} or username like concat('%',#{username},'%'))
-        </if>
-        <if test="name!=null">
-            and (name = #{name} or name like concat('%',#{name},'%'))
-        </if>
-    </select>
-
-    <!-- 根据UserName删除老师信息 -->
-    <delete id="DeleteTeacher" parameterType="User">
         delete from t_user where username=#{username}
     </delete>
 
