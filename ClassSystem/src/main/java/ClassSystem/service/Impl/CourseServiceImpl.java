@@ -1,8 +1,8 @@
 package ClassSystem.service.Impl;
 
+import ClassSystem.entity.Course;
 import ClassSystem.entity.PageHelp;
 import ClassSystem.entity.ServicePost;
-import ClassSystem.entity.User;
 import ClassSystem.mapper.CourseMapper;
 import ClassSystem.service.CourseService;
 import ClassSystem.utility.RedisTemplateUtil;
@@ -28,8 +28,8 @@ public class CourseServiceImpl implements CourseService {
         if (total>0){
             pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
             pageHelp.setEnd(pageHelp.getPagenum());
-            List<User> CourseList = courseMapper.CourseNotList(pageHelp);
-            return servicePost.CreateTrueList(CourseList,total);
+            List<Course> CourseNotList = courseMapper.CourseNotList(pageHelp);
+            return servicePost.CreateTrueList(CourseNotList,total);
         }else {
             return ServicePost.CreateErrorCodMsg("未选课程列表没有数据呢~");
         }
@@ -43,7 +43,7 @@ public class CourseServiceImpl implements CourseService {
         if (total>0){
             pageHelp.setStart((pageHelp.getPage()-1)* pageHelp.getPagenum());
             pageHelp.setEnd(pageHelp.getPagenum());
-            List<User> CourseList = courseMapper.CourseList(pageHelp);
+            List<Course> CourseList = courseMapper.CourseList(pageHelp);
             return servicePost.CreateTrueList(CourseList,total);
         }else {
             return ServicePost.CreateErrorCodMsg("未选课程列表没有数据呢~");
