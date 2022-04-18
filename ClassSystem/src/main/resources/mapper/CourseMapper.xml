@@ -2,4 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ClassSystem.mapper.CourseMapper">
 
+    <!--返回未选课程列表多少行（page）-->
+    <select id="CourseNotTotalCount"  resultType="int">
+        select count(1) from t_Course where sid=1;
+    </select>
+
+    <!--获取未选课程列表-->
+    <select id="CourseNotList" parameterType="PageHelp" resultType="Course">
+        select * from t_Course where sid=1 limit #{start},#{end};
+    </select>
+
+    <!--返回已选课程列表多少行（page）-->
+    <select id="CourseTotalCount"  resultType="int">
+        select count(1) from t_Course where sid=2;
+    </select>
+
+    <!--获取未选课程列表-->
+    <select id="CourseList" parameterType="PageHelp" resultType="Course">
+        select * from t_Course where sid=2 limit #{start},#{end};
+    </select>
+
 </mapper>
