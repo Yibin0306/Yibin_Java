@@ -25,4 +25,5 @@ public class CourseController {
     public ServicePost getCourseSelectionList(PageHelp pageHelp){
         return courseService.CourseList(pageHelp);
     }
+
 }
