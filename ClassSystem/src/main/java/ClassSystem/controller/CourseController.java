@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/course")
 public class CourseController {
-    @Autowired
-    private CourseService courseService;
+//    @Autowired
+//    private CourseService courseService;
 
 }
