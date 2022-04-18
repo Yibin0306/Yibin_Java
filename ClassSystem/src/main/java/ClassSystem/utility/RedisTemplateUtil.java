@@ -11,7 +11,7 @@ public class RedisTemplateUtil {
     private StringRedisTemplate template;
 
     public String setValue(String key,String value){
-        template.opsForValue().append(key, value);
+        template.opsForValue().set(key, value);
         return "保存成功";
     }
 
