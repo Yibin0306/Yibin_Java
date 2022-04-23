@@ -21,6 +21,7 @@ spring:
 mybatis-plus:
   configuration:
     #address_book----->>AddressBook
+    #驼峰写法  在yml中配置  map-underscore-to-camel-case: true（默认开启）
     #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
