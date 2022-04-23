@@ -1,0 +1,29 @@
+server:
+  port: 80
+
+spring:
+  application:
+    #应用的名称：可选
+    name: Reggie
+  #配置jdbc相关信息
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/reggie?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
+      username: root
+      password: 202306
+  #配置redis相关信息
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+
+mybatis-plus:
+  configuration:
+    #address_book----->>AddressBook
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID

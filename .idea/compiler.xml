@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="StudentInfo" />
+        <module name="Reggie" />
         <module name="SpringBoots" />
         <module name="Maven_web" />
         <module name="SpringBoot" />
@@ -28,6 +29,7 @@
       <module name="Msven技术" target="1.5" />
       <module name="Redis" target="1.7" />
       <module name="Redis技术" target="1.7" />
+      <module name="Reggie" target="1.8" />
       <module name="SpringBoot" target="1.7" />
       <module name="SpringBoots" target="1.7" />
       <module name="SSM技术" target="1.7" />
@@ -45,6 +47,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ClassSystem" options="-parameters" />
       <module name="HnchInfo" options="-parameters" />
+      <module name="Reggie" options="-parameters" />
       <module name="SpringBoot" options="-parameters" />
       <module name="SpringBoots" options="-parameters" />
       <module name="StudentInfos" options="-parameters" />
