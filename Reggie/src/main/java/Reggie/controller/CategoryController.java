@@ -58,7 +58,8 @@ public class CategoryController {
     @DeleteMapping
     public R<String> delete(Long ids){
         log.info("当前id为{}",ids);
-        categoryService.removeById(ids);
+        //service进行了菜品关联等逻辑判断
+        categoryService.remove(ids);
         return R.success("删除分类成功呢~");
     }
 }

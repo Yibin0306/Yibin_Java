@@ -36,4 +36,15 @@ public class GlobalExceptionHandler {
         }
         return R.error("未知错误呢~");
     }
+
+    /**
+     * 自定义业务异常类
+     * @return
+     */
+    //自定义业务异常类，捕获自己的异常
+    @ExceptionHandler(CustomException.class)
+    public R<String> exceptionHandler(CustomException ex){
+        log.error(ex.getMessage());
+        return R.error(ex.getMessage());
+    }
 }
