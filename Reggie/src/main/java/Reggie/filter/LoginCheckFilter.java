@@ -28,9 +28,7 @@ public class LoginCheckFilter implements Filter {
 
         //1、获取本次请求的URI
         String requestURI = request.getRequestURI();
-
         log.info("拦截到请求：{}",requestURI);
-
         //配置不需要拦截的路径
         String[] urls = new String[]{
                 //用户登录
