@@ -20,7 +20,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     /**
-     * 新增分类
+     * 新增分类信息
      * @param category
      * @return
      */
@@ -32,7 +32,7 @@ public class CategoryController {
     }
 
     /**
-     * 菜品分类的分页查询
+     * 菜品分类信息的分页查询
      * @param page
      * @param pageSize
      * @return
@@ -51,15 +51,27 @@ public class CategoryController {
     }
 
     /**
-     * 根据id删除分类
+     * 根据id删除分类信息
      * @param ids
      * @return
      */
     @DeleteMapping
     public R<String> delete(Long ids){
-        log.info("当前id为{}",ids);
+        log.info("当前id为：{}",ids);
         //service进行了菜品关联等逻辑判断
         categoryService.remove(ids);
         return R.success("删除分类成功呢~");
+    }
+
+    /**
+     * 根据id修改分类信息
+     * @return
+     */
+    @PutMapping
+    public R<String> update(@RequestBody Category category){
+        log.info("修改分类信息：{}",category);
+
+        categoryService.updateById(category);
+        return R.success("修改分类信息成功呢~");
     }
 }

@@ -74,7 +74,7 @@ public class EmployeeController {
      * @return
      */
     @PostMapping
-    public R<String> save(HttpServletRequest request,@RequestBody Employee employee){
+    public R<String> save(@RequestBody Employee employee){
         log.info("新增员工，员工信息：{}",employee.toString());
         //设置初始密码，并进行md5加密处理
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
@@ -112,7 +112,7 @@ public class EmployeeController {
      * @return
      */
     @PutMapping
-    public R<String> update(HttpServletRequest request,@RequestBody Employee employee){
+    public R<String> update(@RequestBody Employee employee){
         log.info(employee.toString());
         //用自定义元数据对象处理器set内容
         //long会导致雪花算法精度丢失，只有前16位精确,String就不会精度丢失，这里需要使用消息转换器
