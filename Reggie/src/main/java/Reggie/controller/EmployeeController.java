@@ -121,4 +121,24 @@ public class EmployeeController {
         employeeService.page(pageInfo,queryWrapper);
         return R.success(pageInfo);
     }
+
+    /**
+     * 根据id修改员工的信息
+     * @param employee
+     * @return
+     */
+    @PutMapping
+    public R<String> update(HttpServletRequest request,@RequestBody Employee employee){
+        log.info(employee.toString());
+
+        //long会导致雪花算法精度丢失，只有前16位精确
+        //String就不会精度丢失，这里需要使用消息转换器
+        Long empID = (Long) request.getSession().getAttribute("employee");
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(empID);
+        //mybatis-plus 提供修改方法
+        employeeService.updateById(employee);
+
+        return R.success("员工状态 禁用/启用 成功呢~");
+    }
 }
