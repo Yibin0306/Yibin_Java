@@ -27,9 +27,10 @@ public class MetaObjectHandler implements com.baomidou.mybatisplus.core.handlers
         //插入时 填充字段 设置更改时间
         metaObject.setValue("updateTime",LocalDateTime.now());
         //插入时 填充字段 设置创建人
-        metaObject.setValue("createUser",new Long(1));
+        metaObject.setValue("createUser",BaseContext.getCurrentId());
         //插入时 填充字段 设置更改人
-        metaObject.setValue("updateUser",new Long(1));
+        metaObject.setValue("updateUser",BaseContext.getCurrentId());
+
     }
 
     /**
@@ -42,7 +43,7 @@ public class MetaObjectHandler implements com.baomidou.mybatisplus.core.handlers
         log.info(metaObject.toString());
         //插入时 填充字段 设置更改时间
         metaObject.setValue("updateTime",LocalDateTime.now());
-        //插入时 填充字段 设置更改人
-        metaObject.setValue("updateUser",new Long(1));
+        //插入时 填充字段 设置更改人  从线程中get到id
+        metaObject.setValue("updateUser",BaseContext.getCurrentId());
     }
 }

@@ -12,6 +12,9 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 员工管理
+ */
 @Slf4j
 @RestController
 @RequestMapping(value = "/employee")
@@ -97,7 +100,7 @@ public class EmployeeController {
         //添加一个过滤条件
         queryWrapper.like(StringUtils.isNotEmpty(name),Employee::getName,name);
         //添加一个排序条件
-        queryWrapper.orderByDesc(Employee::getUpdateTime);
+        queryWrapper.orderByAsc(Employee::getUpdateTime);
         //执行查询
         employeeService.page(pageInfo,queryWrapper);
         return R.success(pageInfo);
