@@ -28,3 +28,7 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: ASSIGN_ID
+
+#设置图片上传的位置
+reggie:
+  path: D:\伊斌_JAVA\Reggie\src\main\java\Reggie\jpg\
