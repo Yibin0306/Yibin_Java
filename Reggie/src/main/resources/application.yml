@@ -31,4 +31,4 @@ mybatis-plus:
 
 #设置图片上传的位置
 reggie:
-  path: D:\伊斌_JAVA\Reggie\src\main\java\Reggie\jpg\
+  path: D:\伊斌_JAVA\Reggie\src\main\resources\jpg\
