@@ -94,12 +94,12 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
      */
     @Override
     public void remove(Long id) {
-        //删除dish表的基本信息
-        Dish dish = this.getById(id);
-        boolean byId = this.removeById(id);
         //清理菜品对应的口味 --- dish_flavor进行delete操作
+        Dish dish = this.getById(id);
         LambdaQueryWrapper<DishFlavor> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(DishFlavor::getDishId,dish.getId());
-        dishFlavorService.removeById(queryWrapper);
+        dishFlavorService.remove(queryWrapper);
+        //删除dish表的基本信息
+        this.removeById(id);
     }
 }
