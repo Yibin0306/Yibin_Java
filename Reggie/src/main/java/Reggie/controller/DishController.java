@@ -11,7 +11,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +40,7 @@ public class DishController {
     @PostMapping
     public R<String> sava(@RequestBody DishDto dishDto){
         log.info(dishDto.toString());
+        //service层进行了逻辑处理
         dishService.savaWithFlavor(dishDto);
         return R.success("新增菜品成功呢~");
     }
@@ -59,8 +59,8 @@ public class DishController {
         Page<DishDto> dishDtoPage = new Page<>();
         //条件构造器
         LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
-        //添加过滤条件
-        queryWrapper.like(StringUtils.isNotEmpty(name),Dish::getName,name);
+        //添加过滤条件，通过name进行like模糊查询
+        queryWrapper.like(name!=null,Dish::getName,name);
         //添加一个排序条件
         queryWrapper.orderByDesc(Dish::getUpdateTime);
         //执行分页查询
@@ -139,20 +139,21 @@ public class DishController {
     }
 
     /**
-     * 根据条件查询分类数据
-     * @param category
+     * 根据条件查询菜品分类信息
+     * @param dish
      * @return
      */
     @GetMapping("/list")
-    public R<List<Category>> list(Category category){
+    public R<List<Dish>> list(Dish dish){
         //条件构造器
-        LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
         //添加条件
-        queryWrapper.in(Category::getId,category.getId());
-        queryWrapper.eq(Category::getType,category.getType());
+        queryWrapper.eq(dish.getCategoryId()!=null,Dish::getCategoryId,dish.getCategoryId());
+        //查询状态为起售状态菜品
+        queryWrapper.eq(Dish::getStatus,1);
         //添加排序条件
-        queryWrapper.orderByAsc(Category::getSort).orderByDesc(Category::getUpdateTime);
-        List<Category> list = categoryService.list(queryWrapper);
+        queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+        List<Dish> list = dishService.list(queryWrapper);
         return R.success(list);
     }
 }
