@@ -1,5 +1,6 @@
 package Reggie.service.impl;
 
+import Reggie.common.CustomException;
 import Reggie.dto.DishDto;
 import Reggie.entity.Dish;
 import Reggie.entity.DishFlavor;
@@ -90,16 +91,24 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
 
     /**
      * 删除菜品，同时删除菜品对应的口味数据，需要操作两张表：dish dish_flavor
-     * @param id
+     * @param ids
      */
     @Override
-    public void remove(Long id) {
-        //清理菜品对应的口味 --- dish_flavor进行delete操作
-        Dish dish = this.getById(id);
-        LambdaQueryWrapper<DishFlavor> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(DishFlavor::getDishId,dish.getId());
-        dishFlavorService.remove(queryWrapper);
+    public void removeWithFlavor(List<Long> ids) {
+        //查询菜品状态，确定是否可以删除
+        LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.in(Dish::getId,ids);
+        queryWrapper.eq(Dish::getStatus,1);
+        //如果不能删除，抛出一个业务异常
+        int count = this.count(queryWrapper);
+        if (count>0){
+            throw new CustomException("菜品在售卖中，不能删除呢~");
+        }
+        //如果可以删除，先清理菜品对应的口味 --- dish_flavor进行delete操作
+        LambdaQueryWrapper<DishFlavor> queryWrappers = new LambdaQueryWrapper<>();
+        queryWrappers.in(DishFlavor::getDishId,ids);
+        dishFlavorService.remove(queryWrappers);
         //删除dish表的基本信息
-        this.removeById(id);
+        this.removeByIds(ids);
     }
 }

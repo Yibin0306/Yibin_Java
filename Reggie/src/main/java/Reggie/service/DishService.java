@@ -4,6 +4,8 @@ import Reggie.dto.DishDto;
 import Reggie.entity.Dish;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 //继承mybatis-plus提供的IService<加对应实体类>
 public interface DishService extends IService<Dish> {
     //新增菜品，同时插入菜品对应的口味数据，需要操作两张表：dish dish_flavor
@@ -16,5 +18,5 @@ public interface DishService extends IService<Dish> {
     public void upDateWithFlavor(DishDto dishDto);
 
     //删除菜品，同时删除菜品对应的口味数据，需要操作两张表：dish dish_flavor
-    public void remove(Long id);
+    public void removeWithFlavor(List<Long> ids);
 }

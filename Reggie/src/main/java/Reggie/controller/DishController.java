@@ -8,6 +8,7 @@ import Reggie.service.CategoryService;
 import Reggie.service.DishFlavorService;
 import Reggie.service.DishService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -112,10 +113,16 @@ public class DishController {
      * @param ids
      * @return
      */
-    @PostMapping(value = "/status/{ids}")
-    public R<String> upDateStatus(Long ids){
-        log.info(ids.toString());
-        return null;
+    @PostMapping(value = "/status/{status}")
+    public R<String> upDateStatus(@PathVariable Integer status,@RequestParam List<Long> ids){
+        log.info("更改状态为{}",status);
+        log.info("当前id为{}",ids);
+        //LambdaUpdateWrapper作为修改的方法
+        LambdaUpdateWrapper<Dish> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.set(Dish::getStatus,status);
+        updateWrapper.in(Dish::getId,ids);
+        dishService.update(updateWrapper);
+        return R.success("菜品销售状态更新成功呢~");
     }
 
     /**
@@ -124,10 +131,10 @@ public class DishController {
      * @return
      */
     @DeleteMapping
-    public R<String> delete(Long ids){
+    public R<String> delete(@RequestParam List<Long> ids){
         log.info("当前id为{}",ids);
         //service进行了菜品关联等逻辑判断
-        dishService.remove(ids);
-        return R.success("删除菜品信息成功呢");
+        dishService.removeWithFlavor(ids);
+        return R.success("删除菜品信息成功呢~");
     }
 }
