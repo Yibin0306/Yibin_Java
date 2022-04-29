@@ -10,6 +10,7 @@ import Reggie.service.CategoryService;
 import Reggie.service.SetmealDishService;
 import Reggie.service.SetmealService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -96,5 +97,47 @@ public class SetmealController {
     public R<SetmealDto> getById(@PathVariable Long id){
         SetmealDto byIdWithDish = setmealService.getByIdWithDish(id);
         return R.success(byIdWithDish);
+    }
+
+    /**
+     * 修改套餐信息
+     * @param setmealDto
+     * @return
+     */
+    @PutMapping
+    public R<String> upDate(@RequestBody SetmealDto setmealDto){
+        log.info(setmealDto.toString());
+        setmealService.upDateWithDish(setmealDto);
+        return R.success("修改套餐信息成功呢~");
+    }
+
+    /**
+     * 根据id 停售/起售 套餐
+     * @param ids
+     * @return
+     */
+    @PostMapping(value = "/status/{status}")
+    public R<String> upDateStatus(@PathVariable Integer status,@RequestParam List<Long> ids){
+        log.info("更改状态为{}",status);
+        log.info("当前id为{}",ids);
+        //LambdaUpdateWrapper作为修改的方法
+        LambdaUpdateWrapper<Setmeal> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.set(Setmeal::getStatus,status);
+        updateWrapper.in(Setmeal::getId,ids);
+        setmealService.update(updateWrapper);
+        return R.success("菜品销售状态更新成功呢~");
+    }
+
+    /**
+     * 根据id删除套餐信息
+     * @param ids
+     * @return
+     */
+    @DeleteMapping
+    public R<String> delete(@RequestParam List<Long> ids){
+        log.info("当前id为{}",ids);
+        //service进行了套餐关联等逻辑判断
+        setmealService.removeWithDish(ids);
+        return R.success("删除套餐信息成功呢~");
     }
 }

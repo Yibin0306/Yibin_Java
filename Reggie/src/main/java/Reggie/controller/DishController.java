@@ -97,7 +97,7 @@ public class DishController {
     }
 
     /**
-     * 编辑菜品
+     * 修改菜品信息
      * @param dishDto
      * @return
      */
@@ -105,7 +105,7 @@ public class DishController {
     public R<String> upDate(@RequestBody DishDto dishDto){
         log.info(dishDto.toString());
         dishService.upDateWithFlavor(dishDto);
-        return R.success("修改菜品成功呢~");
+        return R.success("修改菜品信息成功呢~");
     }
 
     /**

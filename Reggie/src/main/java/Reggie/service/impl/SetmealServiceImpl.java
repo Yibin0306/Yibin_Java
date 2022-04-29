@@ -1,5 +1,6 @@
 package Reggie.service.impl;
 
+import Reggie.common.CustomException;
 import Reggie.dto.DishDto;
 import Reggie.dto.SetmealDto;
 import Reggie.entity.Dish;
@@ -60,5 +61,50 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
         List<SetmealDish> setmealDishList = setmealDishService.list(queryWrapper);
         setmealDto.setSetmealDishes(setmealDishList);
         return setmealDto;
+    }
+
+    /**
+     * 修改套餐的基本信息和对应的菜品信息，修改操作两张表：setmeal setmeal_Dish
+     * @param setmealDto
+     */
+    @Override
+    @Transactional
+    public void upDateWithDish(SetmealDto setmealDto) {
+        //更新setmeal表的基本信息
+        this.updateById(setmealDto);
+        //先清理套餐对应的菜品 --- setmeal_Dish进行delete操作
+        LambdaQueryWrapper<SetmealDish> queryWrapper = new LambdaQueryWrapper();
+        queryWrapper.eq(SetmealDish::getSetmealId,setmealDto.getId());
+        setmealDishService.remove(queryWrapper);
+        //在添加当前提交过来的菜品信息 --- setmeal_Dish进行insert操作
+        List<SetmealDish> setmealDishes = setmealDto.getSetmealDishes();
+        setmealDishes = setmealDishes.stream().map((itme)->{
+            itme.setSetmealId(setmealDto.getId());
+            return itme;
+        }).collect(Collectors.toList());
+        setmealDishService.saveBatch(setmealDishes);
+    }
+
+    /**
+     * 根据id删除套餐的基本信息和对应的菜品信息，删除操作两张表：setmeal setmeal_Dish
+     * @param ids
+     */
+    @Override
+    public void removeWithDish(List<Long> ids) {
+        //查询套餐状态，确定是否可以删除
+        LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.in(Setmeal::getId,ids);
+        queryWrapper.eq(Setmeal::getStatus,1);
+        //如果不能删除，抛出一个业务异常
+        int count = this.count(queryWrapper);
+        if (count>0){
+            throw new CustomException("套餐在售卖中，不能删除呢~");
+        }
+        //如果可以删除，先清理套餐对应的菜品 --- setmeal_Dish进行delete操作
+        LambdaQueryWrapper<SetmealDish> queryWrappers = new LambdaQueryWrapper<>();
+        queryWrappers.in(SetmealDish::getSetmealId,ids);
+        setmealDishService.remove(queryWrappers);
+        //删除dish表的基本信息
+        this.removeByIds(ids);
     }
 }
