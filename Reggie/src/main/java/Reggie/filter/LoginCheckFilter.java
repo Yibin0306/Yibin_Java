@@ -40,6 +40,8 @@ public class LoginCheckFilter implements Filter {
                 "/backend/**",
                 //移动端资源
                 "/front/**",
+                //移动端验证码
+                "/user/sendMsg",
                 //移动端用户登录
                 "/user/login"
         };
