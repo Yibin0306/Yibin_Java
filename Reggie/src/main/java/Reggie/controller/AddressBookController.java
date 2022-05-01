@@ -35,6 +35,19 @@ public class AddressBookController {
     }
 
     /**
+     * 根据id删除地址
+     */
+    @DeleteMapping
+    public R<String> delete(Long ids) {
+        boolean removeById = addressBookService.removeById(ids);
+        if (removeById = true){
+            return R.success("删除该地址成功呢~");
+        }else {
+            return R.error("没有找到该对象呢~");
+        }
+    }
+
+    /**
      * 设置默认地址
      */
     @PutMapping(value = "/default")
@@ -61,7 +74,21 @@ public class AddressBookController {
         if (addressBook != null) {
             return R.success(addressBook);
         } else {
-            return R.error("没有找到该对象");
+            return R.error("没有找到该对象呢~");
+        }
+    }
+
+    /**
+     * 修改地址
+     */
+    @PutMapping
+    public R<String> update(@RequestBody AddressBook addressBook){
+        log.info(addressBook.toString());
+        boolean updateById = addressBookService.updateById(addressBook);
+        if (updateById = true){
+            return R.success("修改地址成功呢~");
+        }else {
+            return R.error("修改地址失败呢~");
         }
     }
 
@@ -78,7 +105,7 @@ public class AddressBookController {
         AddressBook addressBook = addressBookService.getOne(queryWrapper);
 
         if (null == addressBook) {
-            return R.error("没有找到该对象");
+            return R.error("没有找到该对象呢~");
         } else {
             return R.success(addressBook);
         }
