@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -78,7 +79,6 @@ public class UserController {
         /**
          * 下方是验证码判断逻辑代码
          */
-
 //        //获取验证码
 //        String code = map.get("code").toString();
 //        //从session获取验证码
@@ -102,5 +102,16 @@ public class UserController {
 //        return R.error("验证码错误呢~");
     }
 
+    /**
+     * 用户端退出操作
+     * @param request
+     * @return
+     */
+    @PostMapping(value = "/loginout")
+    public R<String> logout(HttpServletRequest request){
+        //清理Session中保存的当前登录用户的id
+        request.getSession().removeAttribute("user");
+        return R.success("欢迎下次登录呢~");
+    }
 
 }
