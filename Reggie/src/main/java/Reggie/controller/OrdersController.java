@@ -89,7 +89,6 @@ public class OrdersController {
             return ordersDto;
         }).collect(Collectors.toList());
         ordersDtoPage.setRecords(dtoList);
-
         return R.success(ordersDtoPage);
     }
 
