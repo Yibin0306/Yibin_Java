@@ -5,6 +5,7 @@ import Reggie.common.R;
 import Reggie.dto.OrdersDto;
 import Reggie.entity.OrderDetail;
 import Reggie.entity.Orders;
+import Reggie.entity.ShoppingCart;
 import Reggie.entity.User;
 import Reggie.service.OrderDetailService;
 import Reggie.service.OrdersService;
@@ -17,6 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -107,11 +109,13 @@ public class OrdersController {
     }
 
     /**
-     * 客户端查询历史订单
+     * 用户端展示自己的订单分页查询
+     * @param page
+     * @param pageSize
      * @return
      */
-    @GetMapping(value = "/userPage")
-    public R<Page> userPage(int page, int pageSize){
+    @GetMapping("/userPage")
+    public R<Page> page(int page, int pageSize){
         //分页构造器对象
         Page<Orders> pageInfo = new Page<>(page,pageSize);
         Page<OrdersDto> pageDto = new Page<>(page,pageSize);
@@ -121,8 +125,10 @@ public class OrdersController {
         //添加排序条件，根据更新时间降序排列
         queryWrapper.orderByDesc(Orders::getOrderTime);
         ordersService.page(pageInfo,queryWrapper);
+
         //对象的拷贝  注意这里要把分页数据的全集合records给忽略掉  把pageInfo中的数据复制给pageDto
         BeanUtils.copyProperties(pageInfo,pageDto,"records");
+
         //前端传给我们的数据太少了，所以都需要自己从用户id来查询
         Long userId = BaseContext.getCurrentId();
         LambdaQueryWrapper<Orders> queryWrapper2 = new LambdaQueryWrapper<>();
@@ -143,6 +149,7 @@ public class OrdersController {
         queryWrapper3.in(OrderDetail::getOrderId, ordersIdList);
         //查询到OrderDetail集合,里面有我们想要的数据 number  name....
         List<OrderDetail> orderDetailList = orderDetailService.list(queryWrapper3);
+
         //对OrderDto进行需要的属性赋值
         List<Orders> records = pageInfo.getRecords();
         List<OrdersDto> orderDtoList = records.stream().map((item) ->{
@@ -153,6 +160,7 @@ public class OrdersController {
             orderDto.setOrderDetails(orderDetailList);
             return orderDto;
         }).collect(Collectors.toList());
+
         //使用dto的分页有点难度.....需要重点掌握
         pageDto.setRecords(orderDtoList);
         return R.success(pageDto);
@@ -165,17 +173,41 @@ public class OrdersController {
     @PostMapping(value = "/again")
     public R<String> again(@RequestBody Orders orders){
         log.info("当前菜品的id：{}",orders);
-
-//        Long id = orders.getId();
+        Long id = orders.getId();
         //根据id查询到菜品信息
-//        LambdaQueryWrapper<OrderDetail> queryWrapper = new LambdaQueryWrapper<>();
-//        queryWrapper.eq(OrderDetail::getOrderId,id);
-//        OrderDetail orderDetail = orderDetailService.getById(queryWrapper);
-
-//        log.info("当前菜品：{}",orderDetail);
+        LambdaQueryWrapper<OrderDetail> queryWrappers = new LambdaQueryWrapper<>();
+        queryWrappers.eq(OrderDetail::getOrderId,id);
+        List<OrderDetail> orderDetailList = orderDetailService.list(queryWrappers);
+        //通过用户id把原来的购物车给清空
+        LambdaQueryWrapper<ShoppingCart> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ShoppingCart::getUserId,BaseContext.getCurrentId());
+        shoppingCartService.remove(queryWrapper);
         //将菜品信息重新添加到购物车中
-
-
-        return null;
+        //获取用户id
+        Long userId = BaseContext.getCurrentId();
+        List<ShoppingCart> shoppingCartList = orderDetailList.stream().map((item) -> {
+            //把从order表中和order_details表中获取到的数据赋值给这个购物车对象
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.setUserId(userId);
+            shoppingCart.setImage(item.getImage());
+            Long dishId = item.getDishId();
+            Long setmealId = item.getSetmealId();
+            if (dishId != null) {
+                //如果是菜品那就添加菜品的查询条件
+                shoppingCart.setDishId(dishId);
+            } else {
+                //添加到购物车的是套餐
+                shoppingCart.setSetmealId(setmealId);
+            }
+            shoppingCart.setName(item.getName());
+            shoppingCart.setDishFlavor(item.getDishFlavor());
+            shoppingCart.setNumber(item.getNumber());
+            shoppingCart.setAmount(item.getAmount());
+            shoppingCart.setCreateTime(LocalDateTime.now());
+            return shoppingCart;
+        }).collect(Collectors.toList());
+        //把携带数据的购物车批量插入购物车表  这个批量保存的方法要使用熟练！！！
+        shoppingCartService.saveBatch(shoppingCartList);
+        return R.success("成功");
     }
 }
