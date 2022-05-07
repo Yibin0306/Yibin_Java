@@ -16,24 +16,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class ReggieApplication {
     public static void main(String[] args) {
         SpringApplication.run(ReggieApplication.class, args);
-        //输出日志
-        log.info("\n" +
-                "  ┏┓　　 ┏┓\n" +
-                " ┏┛┻━━━━┛┻┓\n" +
-                " ┃　　　　　┃\n" +
-                " ┃　　 ━　  ┃\n" +
-                " ┃　┳┛　┗┳  ┃\n" +
-                " ┃　　　　　 ┃\n" +
-                " ┃　　　┻　　┃\n" +
-                " ┃　　　　　 ┃\n" +
-                " ┗━┓　　　┏━┛\n" +
-                "   ┃　　　┃ 神兽保佑\n" +
-                "   ┃　　　┃ 代码无BUG！\n" +
-                "   ┃　　　┗━━━┓\n" +
-                "   ┃　　　　　　┣┓\n" +
-                "   ┃　　　　　┏┛\n" +
-                "   ┗┓┓┏━┳┓┏┛\n" +
-                "    ┃┫┫　┃┫┫\n" +
-                "    ┗┻┛　┗┻┛\n");
     }
 }
