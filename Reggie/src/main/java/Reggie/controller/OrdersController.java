@@ -108,6 +108,14 @@ public class OrdersController {
         return R.success("派送订单成功呢~");
     }
 
+    //抽离的一个方法，通过订单id查询订单明细，得到一个订单明细的集合
+    //这里之所以抽离出来，那是因为直接写在stream中会出现连续叠加.eq的SQL语句导致后面的数据查询不出来
+    public List<OrderDetail> getOrderDetailListByOrderId(Long orderId){
+        LambdaQueryWrapper<OrderDetail> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(OrderDetail::getOrderId, orderId);
+        List<OrderDetail> orderDetailList = orderDetailService.list(queryWrapper);
+        return orderDetailList;
+    }
     /**
      * 用户端展示自己的订单分页查询
      * @param page
@@ -125,43 +133,22 @@ public class OrdersController {
         //添加排序条件，根据更新时间降序排列
         queryWrapper.orderByDesc(Orders::getOrderTime);
         ordersService.page(pageInfo,queryWrapper);
-
-        //对象的拷贝  注意这里要把分页数据的全集合records给忽略掉  把pageInfo中的数据复制给pageDto
-        BeanUtils.copyProperties(pageInfo,pageDto,"records");
-
-        //前端传给我们的数据太少了，所以都需要自己从用户id来查询
-        Long userId = BaseContext.getCurrentId();
-        LambdaQueryWrapper<Orders> queryWrapper2 = new LambdaQueryWrapper<>();
-        //封装查询Orders表的条件
-        queryWrapper2.eq(Orders::getUserId, userId);
-        //通过用户id查询订单集合
-        List<Orders> list = ordersService.list(queryWrapper2);
-        //创建一个集合用来存放orders 的Id,为后面查询OrderDetail做准备
-        List<Long> ordersIdList = new ArrayList<>();
-        //通过循环拿到所有的ordersId 存在集合中
-        for (Orders orders : list) {
-            Long ordersId = orders.getId();
-            ordersIdList.add(ordersId);
-        }
         //通过OrderId查询对应的OrderDetail
-        LambdaQueryWrapper<OrderDetail> queryWrapper3 = new LambdaQueryWrapper<>();
-        //封装对OrderDetail的查询条件
-        queryWrapper3.in(OrderDetail::getOrderId, ordersIdList);
-        //查询到OrderDetail集合,里面有我们想要的数据 number  name....
-        List<OrderDetail> orderDetailList = orderDetailService.list(queryWrapper3);
-
+        LambdaQueryWrapper<OrderDetail> queryWrapper2 = new LambdaQueryWrapper<>();
         //对OrderDto进行需要的属性赋值
         List<Orders> records = pageInfo.getRecords();
         List<OrdersDto> orderDtoList = records.stream().map((item) ->{
             OrdersDto orderDto = new OrdersDto();
             //此时的orderDto对象里面orderDetails属性还是空 下面准备为它赋值
+            Long orderId = item.getId();//获取订单id
+            List<OrderDetail> orderDetailList = this.getOrderDetailListByOrderId(orderId);
             BeanUtils.copyProperties(item,orderDto);
             //对orderDto进行OrderDetails属性的赋值
             orderDto.setOrderDetails(orderDetailList);
             return orderDto;
         }).collect(Collectors.toList());
-
         //使用dto的分页有点难度.....需要重点掌握
+        BeanUtils.copyProperties(pageInfo,pageDto,"records");
         pageDto.setRecords(orderDtoList);
         return R.success(pageDto);
     }
