@@ -13,6 +13,7 @@ spring:
     host: 127.0.0.1
     port: 6379
     password:
+    database: 0 #操作的是0号数据库
 
 mybatis:
   mapper-locations: mapper/*.xml
