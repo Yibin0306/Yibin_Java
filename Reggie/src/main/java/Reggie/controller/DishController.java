@@ -134,7 +134,7 @@ public class DishController {
         updateWrapper.set(Dish::getStatus,status);
         updateWrapper.in(Dish::getId,ids);
         dishService.update(updateWrapper);
-        //清理某个分类菜品缓存
+        //清理菜品缓存
         Set keys = redisTemplate.keys("dish_*");
         redisTemplate.delete(keys);
         return R.success("菜品销售状态更新成功呢~");
