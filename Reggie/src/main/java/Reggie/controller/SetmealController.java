@@ -13,6 +13,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +40,8 @@ public class SetmealController {
      * @return
      */
     @PostMapping
+    //springCache缓存的删除功能注解
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public R<String> sava(@RequestBody SetmealDto setmealDto){
         log.info("打印{}",setmealDto);
         setmealService.savaWithDish(setmealDto);
@@ -102,6 +106,8 @@ public class SetmealController {
      * @return
      */
     @PutMapping
+    //springCache缓存的删除功能注解
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public R<String> upDate(@RequestBody SetmealDto setmealDto){
         log.info(setmealDto.toString());
         setmealService.upDateWithDish(setmealDto);
@@ -114,6 +120,8 @@ public class SetmealController {
      * @return
      */
     @PostMapping(value = "/status/{status}")
+    //springCache缓存的删除功能注解
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public R<String> upDateStatus(@PathVariable Integer status,@RequestParam List<Long> ids){
         log.info("更改状态为{}",status);
         log.info("当前id为{}",ids);
@@ -144,6 +152,12 @@ public class SetmealController {
      * @return
      */
     @GetMapping(value = "/list")
+    /*
+      springCache缓存的添加功能注解
+      value设置缓存的名称
+      key设置值的内容
+     */
+    @Cacheable(value = "setmealCache",key = "#setmeal.categoryId + '_' + #setmeal.status")
     public R<List<Setmeal>> list(Setmeal setmeal){
         LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(setmeal.getCategoryId()!= null,Setmeal::getCategoryId,setmeal.getCategoryId());

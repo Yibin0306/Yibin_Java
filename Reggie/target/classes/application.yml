@@ -18,6 +18,10 @@ spring:
     port: 6379
     password:
     database: 0
+  #配置springCache的redis有效时间
+  cache:
+    redis:
+      time-to-live: 1800000
 
 mybatis-plus:
   configuration:
