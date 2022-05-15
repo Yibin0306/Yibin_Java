@@ -33,7 +33,7 @@ public class SetmealController {
     private CategoryService categoryService;
 
     /**
-     * 劲增套餐
+     * 新增套餐
      * @param setmealDto
      * @return
      */
