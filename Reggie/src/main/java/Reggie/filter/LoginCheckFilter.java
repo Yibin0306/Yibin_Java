@@ -43,7 +43,12 @@ public class LoginCheckFilter implements Filter {
                 //移动端验证码
                 "/user/sendMsg",
                 //移动端用户登录
-                "/user/login"
+                "/user/login",
+                //配置swagger，生产接口，放行
+                "/doc.html",
+                "/webjars/**",
+                "/swagger-resources",
+                "/v2/api-docs"
         };
 
         //2、判断本次请求是否需要处理
